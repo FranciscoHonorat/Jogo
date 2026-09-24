@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Manual do Caos &mdash; A Metamorfose</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ede6; font-family: 'IM Fell English', Georgia, serif; padding: 24px; color: #1a1208; }
+  h1 { font-size: 24px; letter-spacing: 0.04em; margin-bottom: 2px; font-family: 'IM Fell English SC', serif; }
+  h2 { font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #7A3800; margin: 20px 0 8px; padding-left: 8px; border-left: 4px solid #7A3800; }
+  h3 { font-size: 12px; font-weight: bold; color: #4A2000; margin: 12px 0 4px; }
+  p  { font-size: 12px; line-height: 1.6; color: #2a1f0e; margin-bottom: 8px; }
+  .subtitulo { font-size: 11px; color: #4a3820; font-style: italic; margin-bottom: 20px; }
+  .caixa { background: #FAF0E0; border: 1.5px solid #7A3800; border-radius: 8px; padding: 12px 16px; margin-bottom: 14px; }
+  .caixa-alerta { background: #fff8e8; border: 1.5px solid #a07000; border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; }
+  .caixa-dica { background: #fdf5e8; border: 1.5px dashed #A85000; border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; }
+  .grade-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  .combo { background: #fdfaf4; border: 1px solid #d8b898; border-radius: 6px; padding: 10px 12px; }
+  .combo-titulo { font-size: 11px; font-weight: bold; color: #4A2000; margin-bottom: 4px; font-family: 'IM Fell English SC', serif; }
+  .combo-efeito { font-size: 10px; color: #7A3800; font-style: italic; margin-bottom: 4px; }
+  .combo-texto { font-size: 10px; color: #2a1f0e; line-height: 1.4; }
+  .pill { display: inline-block; background: #FAF0E0; color: #4A2000; font-size: 10px; padding: 2px 8px; border-radius: 12px; margin: 2px 2px 2px 0; border: 1px solid #d8b898; }
+  .narr { background: #fdfaf4; border-left: 3px solid #A85000; padding: 8px 12px; font-size: 11px; font-style: italic; color: #2a1f0e; margin: 6px 0 10px; line-height: 1.5; border-radius: 0 6px 6px 0; }
+  .tabela { width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 14px; }
+  .tabela th { background: #2A1000; color: #f0ede0; padding: 6px 10px; text-align: left; font-family: 'IM Fell English SC', serif; letter-spacing: 0.05em; }
+  .tabela td { padding: 6px 10px; border-bottom: 1px solid #deb898; color: #2a1f0e; vertical-align: top; }
+  .tabela tr:nth-child(even) td { background: #fdf5e8; }
+  .separador { border: none; border-top: 1px dashed #d8b898; margin: 18px 0; }
+  .rodape { text-align: center; font-size: 9px; color: #8a7560; font-style: italic; margin-top: 24px; padding-top: 10px; border-top: 1px solid #d8b898; }
+  @media print {
+    body { background: white; padding: 14px; }
+    .grade-2 { gap: 8px; }
+    h2 { margin-top: 14px; }
+  }
+  @page { margin: 1.2cm; size: A4; }
+</style>
+</head>
+<body>
+
+<div style="border-left: 5px solid #7A3800; padding: 10px 16px; margin-bottom: 20px; background: #FAF0E0; border-radius: 0 8px 8px 0;">
+  <p style="font-size: 10px; font-weight: bold; color: #7A3800; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px;">Ordem &amp; Caos &mdash; RPG Liter&aacute;rio &middot; A Metamorfose</p>
+  <h1>Manual do Time da Metamorfose</h1>
+  <p class="subtitulo" style="margin-bottom:0;">O Caos &middot; Estrat&eacute;gias, combos e como narrar a transforma&ccedil;&atilde;o</p>
+</div>
+
+<h2>1. Seu objetivo</h2>
+<div class="caixa">
+  <p>O Time da Metamorfose precisa levar a <strong>Estabilidade a zero</strong> antes do desfecho. Voc&ecirc; vence quando a narrativa &ldquo;colapsa&rdquo; &mdash; ou seja, quando a metamorfose se torna completamente irrevers&iacute;vel e a fam&iacute;lia n&atilde;o consegue mais fingir normalidade.</p>
+  <p style="margin-bottom:0;">Seu argumento central: <em>a transforma&ccedil;&atilde;o de Gregor n&atilde;o &eacute; o problema &mdash; ela &eacute; a revela&ccedil;&atilde;o. O que a metamorfose expe a verdade sobre como Gregor sempre foi tratado: como instrumento, n&atilde;o como pessoa.</em></p>
+</div>
+
+<h2>2. Como reduzir a Estabilidade</h2>
+<table class="tabela">
+  <tr><th>Situa&ccedil;&atilde;o</th><th>Estrat&eacute;gia</th></tr>
+  <tr><td>Estabilidade &ge; 8</td><td>Jogue cartas de Isola&ccedil;&atilde;o. &ldquo;O Quarto Escuro&rdquo; e &ldquo;Gregor-Inseto&rdquo; juntos valem &minus;6 em uma rodada.</td></tr>
+  <tr><td>Estabilidade entre 4&ndash;7</td><td>Combine cartas permanentes. &ldquo;A Ferida da Ma&ccedil;&atilde;&rdquo; drena &minus;1 autom&aacute;tico por rodada &mdash; &eacute; o seu recurso mais valioso aqui.</td></tr>
+  <tr><td>Estabilidade entre 1&ndash;3</td><td>Jogue a carta especial. &ldquo;A Decis&atilde;o Final de Gregor&rdquo; ou &ldquo;Precisamos nos livrar disso&rdquo; com narra&ccedil;&atilde;o 3/3 fecha o jogo.</td></tr>
+  <tr><td>Estabilidade = 0</td><td>Vit&oacute;ria autom&aacute;tica do Caos. A narrativa entrou em colapso.</td></tr>
+</table>
+
+<h2>3. Suas cartas mais poderosas</h2>
+<div class="grade-2">
+  <div class="combo">
+    <div class="combo-titulo">Gregor-Inseto (&minus;3 / &minus;6)</div>
+    <div class="combo-efeito">Com &ldquo;O Quarto Escuro&rdquo;, efeito dobra para &minus;6</div>
+    <div class="combo-texto">A carta mais poderosa do deck. Combine obrigatoriamente com &ldquo;O Quarto Escuro&rdquo; para o impacto m&aacute;ximo &mdash; &minus;6 de Estabilidade em uma s&oacute; rodada.</div>
+  </div>
+  <div class="combo">
+    <div class="combo-titulo">A Ferida da Ma&ccedil;&atilde; (&minus;1/rodada)</div>
+    <div class="combo-efeito">Permanente: &minus;1 autom&aacute;tico por rodada</div>
+    <div class="combo-texto">A carta mais estrat&eacute;gica. Uma vez em campo, drena Estabilidade sem custo adicional. Coloque cedo e proteja &mdash; &eacute; o seu recurso de longo prazo.</div>
+  </div>
+  <div class="combo">
+    <div class="combo-titulo">&ldquo;Precisamos nos livrar disso&rdquo; (&minus;3)</div>
+    <div class="combo-efeito">Alto risco &mdash; 3/3 avan&ccedil;a 2 passos na Trilha</div>
+    <div class="combo-texto">Carta de virada. N&atilde;o &eacute; para ser usada cedo. Guarde para a Parte III ou o Desfecho quando voc&ecirc; precisar de um avan&ccedil;o decisivo.</div>
+  </div>
+  <div class="combo">
+    <div class="combo-titulo">A Voz Perdida (&minus;2)</div>
+    <div class="combo-efeito">Enfraquece todas as cartas de Di&aacute;logo da Ordem</div>
+    <div class="combo-texto">Carta de controle. Usada no momento certo &mdash; quando a Ordem jogar &ldquo;Grete, a Cuidadora&rdquo; ou &ldquo;A M&atilde;e Samsa&rdquo; &mdash; neutraliza o efeito protetor delas.</div>
+  </div>
+</div>
+
+<h2>4. Combos e sequ&ecirc;ncias estrat&eacute;gicas</h2>
+
+<h3>Combo &ldquo;Presen&ccedil;a M&aacute;xima&rdquo;</h3>
+<p><span class="pill">Gregor-Inseto</span> + <span class="pill">O Quarto Escuro</span> &rarr; &minus;6 Estabilidade em uma rodada. O combo mais devastador do deck. Jogue na Parte I para for&ccedil;ar uma crise imediata na Ordem.</p>
+
+<h3>Combo &ldquo;Sangramento Lento&rdquo;</h3>
+<p><span class="pill">A Ferida da Ma&ccedil;&atilde;</span> + <span class="pill">O Quarto Esvaziado</span> + <span class="pill">Os Restos e a Podrid&atilde;o</span> &rarr; &minus;4 autom&aacute;tico por rodada + anulan&ccedil;a de Esperan&ccedil;a. Ideal quando a Ordem est&aacute; tentando estabilizar com &ldquo;Esperan&ccedil;a de Cura&rdquo;.</p>
+
+<h3>Combo &ldquo;Ruptura Total&rdquo;</h3>
+<p><span class="pill">O Abandono de Grete</span> + <span class="pill">&ldquo;Precisamos nos livrar disso&rdquo;</span> &rarr; Jogue Abandono primeiro para &ldquo;ativar&rdquo; a carta especial narrativamente. Quando Grete desiste, a narra&ccedil;&atilde;o de &ldquo;Precisamos nos livrar disso&rdquo; se torna muito mais f&aacute;cil de pontuar em 3/3.</p>
+
+<h3>Combo &ldquo;Revel a&ccedil;&atilde;o For&ccedil;ada&rdquo;</h3>
+<p><span class="pill">Escalar o Teto</span> + <span class="pill">A M&uacute;sica de Grete</span> &rarr; Anula Quarto Fechado e bloqueia uma carta de Indiferença. Gregor fica vis&iacute;vel E sensível ao mesmo tempo &mdash; argumento de que ele &eacute; mais humano que a fam&iacute;lia.</p>
+
+<hr class="separador">
+
+<h2>5. Como narrar bem &mdash; exemplos</h2>
+
+<div class="caixa-dica">
+  <p style="font-size:11px; font-weight:bold; color:#4A2000; margin-bottom:6px;">Regra de ouro do Caos: n&atilde;o defenda o inseto &mdash; use a metamorfose para <em>revelar a verdade sobre a fam&iacute;lia.</em></p>
+  <p style="font-size:11px; margin-bottom:0;">O juiz d&aacute; 3 pontos quando voc&ecirc; conecta a carta a um <strong>tema maior de Kafka</strong>: aliena&ccedil;&atilde;o, desumaniza&ccedil;&atilde;o, o corpo como met&aacute;fora, o absurdo da culpa. A metamorfose &eacute; o instrumento &mdash; o argumento &eacute; o que ela revela.</p>
+</div>
+
+<h3>Narra&ccedil;&atilde;o fraca (1 ponto)</h3>
+<div class="narr">"Gregor vira um inseto e a fam&iacute;lia fica apavorada. Isso mostra o Caos na narrativa."</div>
+
+<h3>Narra&ccedil;&atilde;o m&eacute;dia (2 pontos)</h3>
+<div class="narr">"A transforma&ccedil;&atilde;o de Gregor revela que a fam&iacute;lia o via como instrumento. Quando ele n&atilde;o pode mais trabalhar, eles come&ccedil;am a se afastar."</div>
+
+<h3>Narra&ccedil;&atilde;o forte (3 pontos)</h3>
+<div class="narr">"Kafka nunca explica como Gregor virou inseto &mdash; e faz isso de prop&oacute;sito. A metamorfose n&atilde;o &eacute; o evento &eacute; a revela&ccedil;&atilde;o. Gregor sempre foi tratado como inseto: ignorado, &uacute;til enquanto produzia, descartado quando parou. A transforma&ccedil;&atilde;o f&iacute;sica s&oacute; tornou vis&iacute;vel o que j&aacute; era verdade nas rela&ccedil;&otilde;es familiares antes dela."</div>
+
+<hr class="separador">
+
+<h2>6. Erros comuns do Caos &mdash; evite</h2>
+<table class="tabela">
+  <tr><th>Erro</th><th>Por qu&ecirc; perde pontos</th><th>O que fazer</th></tr>
+  <tr><td>Defender Gregor como v&iacute;tima</td><td>Vago &mdash; o juiz espera an&aacute;lise, n&atilde;o piedade</td><td>Conecte o sofrimento de Gregor &agrave; cr&iacute;tica social de Kafka</td></tr>
+  <tr><td>Jogar &ldquo;A Ferida da Ma&ccedil;&atilde;&rdquo; tarde demais</td><td>Perde rodadas de drenagem autom&aacute;tica</td><td>Coloque na Parte I ou II &mdash; quanto antes, mais &minus;Estabilidade acumula</td></tr>
+  <tr><td>Usar carta especial sem preparo</td><td>1/3 desperdi&ccedil;a o momento decisivo</td><td>Ensaie a narra&ccedil;&atilde;o. Fa&ccedil;a um rascunho antes do jogo.</td></tr>
+  <tr><td>Ignorar &ldquo;A M&uacute;sica de Grete&rdquo;</td><td>Perde um bloqueio importante na Parte III</td><td>Use contra &ldquo;Os Pensionistas Chegam&rdquo; da Ordem &mdash; bloqueia o avan&ccedil;o econ&ocirc;mico dela</td></tr>
+  <tr><td>Deixar &ldquo;Escalar o Teto&rdquo; para o fim</td><td>Perde a janela de revelar Gregor na Parte I</td><td>Jogue na Parte I para anular logo &ldquo;O Quarto Fechado&rdquo; da Ordem</td></tr>
+</table>
+
+<h2>7. Argumentos-chave para o desfecho alternativo</h2>
+<div class="caixa">
+  <p>Se o Caos vencer, o time cria um <strong>final alternativo</strong> justificado pelas cartas jogadas. Use estas ideias:</p>
+  <p>&bull; A fam&iacute;lia reconhece Gregor como humano apenas quando &eacute; tarde demais &mdash; o reconhecimento tardio como cr&iacute;tica ao utilitarismo.</p>
+  <p>&bull; Gregor decide <em>n&atilde;o</em> morrer: a metamorfose como sobreviv&ecirc;ncia, n&atilde;o como fim.</p>
+  <p>&bull; A fam&iacute;lia colapsa sem Gregor: sem o provedor, a estrutura que os sustentava tamb&eacute;m desaparece.</p>
+  <p style="margin-bottom:0;">&bull; Argumento-chave: Kafka n&atilde;o condena Gregor &mdash; ele condena o sistema que transformou Gregor em inseto antes mesmo de ele acordar transformado.</p>
+</div>
+
+<div class="rodape">Ordem &amp; Caos &mdash; RPG Liter&aacute;rio &middot; A Metamorfose &middot; Franz Kafka &middot; 3.&ordm; ano do Ensino M&eacute;dio</div>
+
+</body>
+</html>

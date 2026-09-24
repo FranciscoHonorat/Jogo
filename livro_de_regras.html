@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Livro de Regras &mdash; Ordem &amp; Caos: A Metamorfose</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ede6; font-family: 'IM Fell English', Georgia, serif; padding: 28px; color: #1a1208; max-width: 780px; margin: 0 auto; }
+  h1 { font-size: 26px; font-family: 'IM Fell English SC', serif; letter-spacing: 0.04em; margin-bottom: 4px; }
+  h2 { font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase; color: #2a1f0e; margin: 24px 0 10px; padding: 6px 10px; background: #e8e2d8; border-left: 5px solid #5A5A5A; border-radius: 0 6px 6px 0; }
+  h2.ordem { border-left-color: #2E5C14; background: #e8f5e0; color: #1A3A08; }
+  h2.caos  { border-left-color: #7A3800; background: #faf0e0; color: #4A2000; }
+  h3 { font-size: 13px; font-weight: bold; color: #2a1f0e; margin: 14px 0 6px; }
+  p  { font-size: 12px; line-height: 1.7; color: #2a1f0e; margin-bottom: 8px; }
+  li { font-size: 12px; line-height: 1.7; color: #2a1f0e; margin-bottom: 4px; margin-left: 18px; }
+  .capa { border-left: 6px solid #3A3A3A; padding: 12px 18px; margin-bottom: 28px; background: #e8e2d8; border-radius: 0 10px 10px 0; }
+  .destaque { background: #fdfaf4; border: 1.5px solid #8A8070; border-radius: 8px; padding: 12px 16px; margin: 10px 0 14px; }
+  .destaque.verde { border-color: #2E5C14; background: #f0fce8; }
+  .destaque.marrom { border-color: #7A3800; background: #fdf5e8; }
+  .destaque.cinza { border-color: #8A8070; background: #f5f2ec; }
+  .grade-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0 14px; }
+  .grade-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 10px 0 14px; }
+  .card { background: #fdfaf4; border: 1px solid #c8c0b0; border-radius: 8px; padding: 10px 12px; }
+  .card-titulo { font-size: 11px; font-weight: bold; font-family: 'IM Fell English SC', serif; margin-bottom: 5px; }
+  .tag { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 10px; margin: 2px 2px 2px 0; font-weight: bold; }
+  .tag-ordem { background: #DFF0D0; color: #1A3A08; }
+  .tag-caos  { background: #FAF0E0; color: #4A2000; }
+  .tag-neutro{ background: #e8e2d8; color: #3A3A3A; }
+  .separador { border: none; border-top: 1px dashed #c8c0b0; margin: 20px 0; }
+  .numero-circulo { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; font-size: 13px; font-weight: bold; font-family: 'IM Fell English SC', serif; margin-right: 6px; flex-shrink: 0; }
+  .passo { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+  .passo-corpo { flex: 1; }
+  .passo-titulo { font-size: 12px; font-weight: bold; margin-bottom: 2px; }
+  .passo-desc { font-size: 11px; color: #3a2e1e; line-height: 1.5; }
+  .timer { font-size: 18px; font-weight: bold; font-family: 'IM Fell English SC', serif; }
+  table { width: 100%; border-collapse: collapse; font-size: 11px; margin: 10px 0 14px; }
+  th { padding: 6px 10px; text-align: left; font-family: 'IM Fell English SC', serif; letter-spacing: 0.05em; }
+  td { padding: 6px 10px; border-bottom: 1px solid #ddd5c5; vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: #f8f5f0; }
+  .rodape { text-align: center; font-size: 9px; color: #8a7560; font-style: italic; margin-top: 28px; padding-top: 10px; border-top: 1px solid #c8c0b0; }
+  .aviso { background: #fff8e0; border: 1.5px solid #c0940000; border-color: #c09400; border-radius: 8px; padding: 10px 14px; margin: 10px 0 14px; font-size: 11px; }
+  svg text { font-family: 'IM Fell English', Georgia, serif; }
+  @media print {
+    body { background: white; padding: 16px; }
+    h2 { break-after: avoid; }
+    .passo, .card { break-inside: avoid; }
+  }
+  @page { margin: 1.2cm; size: A4; }
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="capa">
+  <p style="font-size:10px;font-weight:bold;color:#5A5A5A;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">Ordem &amp; Caos &mdash; RPG Liter&aacute;rio</p>
+  <h1>Livro de Regras</h1>
+  <p style="font-size:13px;font-style:italic;margin-bottom:2px;color:#4a3820;">A Metamorfose &middot; Franz Kafka</p>
+  <p style="font-size:11px;color:#6a5840;">3.&ordm; ano do Ensino M&eacute;dio &middot; 6 a 14 jogadores &middot; 45&ndash;60 minutos</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2>1. O Jogo em 1 Minuto</h2>
+
+<p>Dois times debatem sobre <em>A Metamorfose</em> de Kafka usando cartas. Cada carta representa um personagem, evento ou cen&aacute;rio da novela. Ao jogar uma carta, o time <strong>argumenta</strong> usando o conte&uacute;do do livro. O time adversário <strong>contra-argumenta</strong>. Um painel de ju&iacute;zes pontua a qualidade dos argumentos. Os pontos movem a <strong>Trilha de Estabilidade</strong>, que determina quem vence.</p>
+
+<div class="grade-2">
+  <div class="destaque verde">
+    <p style="font-size:11px;font-weight:bold;color:#1A3A08;margin-bottom:4px;">Time da Ordem &mdash; A Fam&iacute;lia</p>
+    <p style="font-size:11px;margin-bottom:0;">Defende a Estabilidade. Vence se o marcador <strong>chegar a 15</strong> ou se o time do Caos n&atilde;o conseguir argumentar bem at&eacute; o fim do jogo.</p>
+  </div>
+  <div class="destaque marrom">
+    <p style="font-size:11px;font-weight:bold;color:#4A2000;margin-bottom:4px;">Time do Caos &mdash; A Metamorfose</p>
+    <p style="font-size:11px;margin-bottom:0;">Destr&oacute;i a Estabilidade. Vence se o marcador <strong>chegar a 0</strong> ou se o time da Ordem n&atilde;o conseguir defender a narrativa at&eacute; o fim do jogo.</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2>2. Componentes Necess&aacute;rios</h2>
+
+<div class="grade-2">
+  <div>
+    <h3>Impressos (inclusos neste kit)</h3>
+    <ul>
+      <li>12 cartas da Ordem (verdes)</li>
+      <li>12 cartas do Caos (marrons)</li>
+      <li>Trilha de Estabilidade impressa (<em>trilha_estabilidade.html</em>)</li>
+      <li>Fichas de avalia&ccedil;&atilde;o dos ju&iacute;zes (<em>guia_juizes.html</em>)</li>
+    </ul>
+  </div>
+  <div>
+    <h3>Materiais adicionais</h3>
+    <ul>
+      <li>1 marcador de posi&ccedil;&atilde;o (moeda, clipe, pe&ccedil;a de jogo)</li>
+      <li>Rel&oacute;gio ou cron&ocirc;metro (celular)</li>
+      <li>1 copia de <em>A Metamorfose</em> para consulta (opcional)</li>
+      <li>Bloco de anota&ccedil;&otilde;es para os ju&iacute;zes</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2>3. Prepara&ccedil;&atilde;o &mdash; Como Montar a Mesa</h2>
+
+<!-- DIAGRAMA SVG: SETUP DA MESA -->
+<svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin:10px 0 18px;border:1px solid #c8c0b0;border-radius:8px;background:#fdfaf4;">
+  <!-- Mesa -->
+  <rect x="20" y="20" width="660" height="280" rx="12" fill="#f5f0e8" stroke="#c8c0b0" stroke-width="1.5"/>
+
+  <!-- TIME DA ORDEM (esquerda) -->
+  <rect x="30" y="30" width="180" height="260" rx="8" fill="#e8f5e0" stroke="#2E5C14" stroke-width="2"/>
+  <text x="120" y="58" text-anchor="middle" font-size="11" font-weight="bold" fill="#1A3A08" font-family="Georgia,serif">TIME DA ORDEM</text>
+  <text x="120" y="72" text-anchor="middle" font-size="9" fill="#2E5C14" font-family="Georgia,serif">A Famíla · 6+ jogadores</text>
+  <!-- Ícone de cartas -->
+  <rect x="60" y="85" width="44" height="60" rx="4" fill="#DFF0D0" stroke="#2E5C14" stroke-width="1.5"/>
+  <rect x="75" y="80" width="44" height="60" rx="4" fill="#c8e8b0" stroke="#2E5C14" stroke-width="1.5"/>
+  <rect x="90" y="75" width="44" height="60" rx="4" fill="#DFF0D0" stroke="#2E5C14" stroke-width="2"/>
+  <text x="112" y="110" text-anchor="middle" font-size="9" fill="#1A3A08" font-family="Georgia,serif">DECK</text>
+  <text x="112" y="122" text-anchor="middle" font-size="9" fill="#1A3A08" font-family="Georgia,serif">12 cartas</text>
+  <!-- Campo de jogo ordem -->
+  <rect x="45" y="162" width="155" height="60" rx="4" fill="white" stroke="#2E5C14" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="122" y="188" text-anchor="middle" font-size="9" fill="#4A8C20" font-family="Georgia,serif">Campo de jogo</text>
+  <text x="122" y="202" text-anchor="middle" font-size="8" fill="#4A8C20" font-style="italic" font-family="Georgia,serif">cartas ativas aqui</text>
+  <!-- Porta-voz -->
+  <circle cx="122" cy="252" r="12" fill="#DFF0D0" stroke="#2E5C14" stroke-width="1.5"/>
+  <text x="122" y="257" text-anchor="middle" font-size="8" fill="#1A3A08" font-family="Georgia,serif">PV</text>
+  <text x="122" y="272" text-anchor="middle" font-size="8" fill="#2E5C14" font-family="Georgia,serif">porta-voz</text>
+
+  <!-- TRILHA DE ESTABILIDADE (centro) -->
+  <rect x="228" y="30" width="244" height="260" rx="8" fill="white" stroke="#8A8070" stroke-width="1.5"/>
+  <text x="350" y="54" text-anchor="middle" font-size="12" font-weight="bold" fill="#3A3A3A" font-family="Georgia,serif">TRILHA DE ESTABILIDADE</text>
+  <!-- Barra -->
+  <rect x="248" y="68" width="204" height="28" rx="4" fill="#f0ede6" stroke="#8A8070" stroke-width="1"/>
+  <!-- Segmentos da trilha 0-15 -->
+  <rect x="248" y="68" width="27" height="28" rx="0" fill="#FAF0E0" stroke="#8A8070" stroke-width="0.5"/>
+  <text x="261" y="87" text-anchor="middle" font-size="9" fill="#7A3800" font-weight="bold" font-family="Georgia,serif">0</text>
+  <rect x="275" y="68" width="68" height="28" fill="#FFF4E0" stroke="#8A8070" stroke-width="0.5"/>
+  <text x="309" y="87" text-anchor="middle" font-size="8" fill="#A07000" font-family="Georgia,serif">1 · 2 · 3 · 4</text>
+  <rect x="343" y="68" width="55" height="28" fill="#f5f2ec" stroke="#8A8070" stroke-width="0.5"/>
+  <text x="370" y="87" text-anchor="middle" font-size="8" fill="#5A5A5A" font-family="Georgia,serif">5 · 6 · 7</text>
+  <!-- Zona segura - verde -->
+  <rect x="398" y="68" width="40" height="28" fill="#e8f5e0" stroke="#8A8070" stroke-width="0.5"/>
+  <text x="418" y="87" text-anchor="middle" font-size="8" fill="#2E5C14" font-family="Georgia,serif">8 · 9</text>
+  <rect x="438" y="68" width="14" height="28" fill="#DFF0D0" stroke="#8A8070" stroke-width="0.5"/>
+  <text x="445" y="87" text-anchor="middle" font-size="8" fill="#1A3A08" font-family="Georgia,serif">10</text>
+  <!-- Início marcado -->
+  <line x1="445" y1="66" x2="445" y2="100" stroke="#3A3A3A" stroke-width="2" stroke-dasharray="3,2"/>
+  <text x="445" y="112" text-anchor="middle" font-size="9" fill="#3A3A3A" font-family="Georgia,serif">INÍCIO</text>
+  <!-- Zonas coloridas adicionais -->
+  <rect x="452" y="68" width="40" height="28" fill="#c8e8b0" stroke="#8A8070" stroke-width="0.5"/>
+  <text x="472" y="87" text-anchor="middle" font-size="8" fill="#1A3A08" font-family="Georgia,serif">11-13</text>
+  <!-- Vitória Ordem -->
+  <rect x="248" y="68" width="27" height="28" rx="4 0 0 4" fill="#FAF0E0"/>
+  <rect x="452" y="68" width="0" height="28"/>
+
+  <!-- Legenda -->
+  <rect x="248" y="130" width="14" height="14" rx="2" fill="#FAF0E0" stroke="#7A3800" stroke-width="1"/>
+  <text x="268" y="142" font-size="9" fill="#4A2000" font-family="Georgia,serif">Zona do Caos (0-4)</text>
+  <rect x="248" y="152" width="14" height="14" rx="2" fill="#f5f2ec" stroke="#8A8070" stroke-width="1"/>
+  <text x="268" y="164" font-size="9" fill="#3A3A3A" font-family="Georgia,serif">Zona neutra (5-9)</text>
+  <rect x="248" y="174" width="14" height="14" rx="2" fill="#DFF0D0" stroke="#2E5C14" stroke-width="1"/>
+  <text x="268" y="186" font-size="9" fill="#1A3A08" font-family="Georgia,serif">Zona da Ordem (10+)</text>
+
+  <!-- Marcador inicial -->
+  <circle cx="452" cy="82" r="8" fill="#3A3A3A" stroke="white" stroke-width="1.5"/>
+  <text x="452" y="86" text-anchor="middle" font-size="8" fill="white" font-weight="bold" font-family="Georgia,serif">M</text>
+  <text x="350" y="215" text-anchor="middle" font-size="9" fill="#5A5A5A" font-style="italic" font-family="Georgia,serif">Marcador começa em 10.</text>
+  <text x="350" y="229" text-anchor="middle" font-size="9" fill="#1A3A08" font-family="Georgia,serif">Ordem vence: marcador chega a 15 →</text>
+  <text x="350" y="243" text-anchor="middle" font-size="9" fill="#7A3800" font-family="Georgia,serif">← Caos vence: marcador chega a 0</text>
+  <!-- Ju&iacute;zes abaixo do centro -->
+  <rect x="278" y="258" width="144" height="22" rx="6" fill="#f5f2ec" stroke="#8A8070" stroke-width="1.5"/>
+  <text x="350" y="273" text-anchor="middle" font-size="10" fill="#3A3A3A" font-weight="bold" font-family="Georgia,serif">JU&Iacute;ZES (1-3 alunos)</text>
+
+  <!-- TIME DO CAOS (direita) -->
+  <rect x="490" y="30" width="180" height="260" rx="8" fill="#faf0e0" stroke="#7A3800" stroke-width="2"/>
+  <text x="580" y="58" text-anchor="middle" font-size="11" font-weight="bold" fill="#4A2000" font-family="Georgia,serif">TIME DO CAOS</text>
+  <text x="580" y="72" text-anchor="middle" font-size="9" fill="#7A3800" font-family="Georgia,serif">A Metamorfose · 6+ jogadores</text>
+  <!-- Deck cartas caos -->
+  <rect x="520" y="85" width="44" height="60" rx="4" fill="#FAF0E0" stroke="#7A3800" stroke-width="1.5"/>
+  <rect x="535" y="80" width="44" height="60" rx="4" fill="#f0d8b0" stroke="#7A3800" stroke-width="1.5"/>
+  <rect x="550" y="75" width="44" height="60" rx="4" fill="#FAF0E0" stroke="#7A3800" stroke-width="2"/>
+  <text x="572" y="110" text-anchor="middle" font-size="9" fill="#4A2000" font-family="Georgia,serif">DECK</text>
+  <text x="572" y="122" text-anchor="middle" font-size="9" fill="#4A2000" font-family="Georgia,serif">12 cartas</text>
+  <!-- Campo caos -->
+  <rect x="505" y="162" width="155" height="60" rx="4" fill="white" stroke="#7A3800" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="582" y="188" text-anchor="middle" font-size="9" fill="#A85000" font-family="Georgia,serif">Campo de jogo</text>
+  <text x="582" y="202" text-anchor="middle" font-size="8" fill="#A85000" font-style="italic" font-family="Georgia,serif">cartas ativas aqui</text>
+  <!-- Porta-voz caos -->
+  <circle cx="582" cy="252" r="12" fill="#FAF0E0" stroke="#7A3800" stroke-width="1.5"/>
+  <text x="582" y="257" text-anchor="middle" font-size="8" fill="#4A2000" font-family="Georgia,serif">PV</text>
+  <text x="582" y="272" text-anchor="middle" font-size="8" fill="#7A3800" font-family="Georgia,serif">porta-voz</text>
+</svg>
+
+<div class="destaque cinza">
+  <p style="font-size:11px;font-weight:bold;margin-bottom:6px;">Prepara&ccedil;&atilde;o em 3 passos:</p>
+  <p style="font-size:11px;margin-bottom:4px;"><strong>1.</strong> Coloque a <strong>Trilha de Estabilidade</strong> no centro da mesa e posicione o marcador no n&uacute;mero <strong>10</strong>.</p>
+  <p style="font-size:11px;margin-bottom:4px;"><strong>2.</strong> Cada time recebe seu deck de 12 cartas. Os jogadores leem suas cartas em grupo e escolhem 1 <strong>porta-voz</strong> por rodada (pode se revezar).</p>
+  <p style="font-size:11px;margin-bottom:0;"><strong>3.</strong> Os ju&iacute;zes (1 a 3 alunos ou o professor) ficam no centro, com as fichas de avalia&ccedil;&atilde;o em m&atilde;os.</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2>4. Como Funciona um Turno &mdash; Fluxo Completo</h2>
+
+<!-- DIAGRAMA SVG: FLUXO DE TURNO -->
+<svg viewBox="0 0 700 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin:10px 0 18px;border:1px solid #c8c0b0;border-radius:8px;background:#fdfaf4;">
+  <!-- Fundo -->
+  <rect x="0" y="0" width="700" height="440" rx="8" fill="#fdfaf4"/>
+
+  <!-- Passo 1: Time A escolhe carta -->
+  <rect x="20" y="20" width="200" height="60" rx="8" fill="#DFF0D0" stroke="#2E5C14" stroke-width="2"/>
+  <text x="120" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="#1A3A08" font-family="Georgia,serif">1. ORDEM escolhe</text>
+  <text x="120" y="60" text-anchor="middle" font-size="10" fill="#2E5C14" font-family="Georgia,serif">uma carta do deck e anuncia</text>
+  <!-- Seta passo 1 → 2 -->
+  <line x1="220" y1="50" x2="258" y2="50" stroke="#3A3A3A" stroke-width="2" marker-end="url(#arrow)"/>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#3A3A3A"/>
+    </marker>
+    <marker id="arrow-verde" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#2E5C14"/>
+    </marker>
+    <marker id="arrow-marrom" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#7A3800"/>
+    </marker>
+  </defs>
+
+  <!-- Passo 2: Cronômetro narração -->
+  <rect x="260" y="20" width="180" height="60" rx="8" fill="#e8e2d8" stroke="#5A5A5A" stroke-width="2"/>
+  <text x="350" y="40" text-anchor="middle" font-size="11" font-weight="bold" fill="#2a1f0e" font-family="Georgia,serif">2. NARRAÇÃO DA ORDEM</text>
+  <text x="350" y="56" text-anchor="middle" font-size="20" font-weight="bold" fill="#3A3A3A" font-family="Georgia,serif">⏱ 2 min</text>
+  <!-- Seta 2 → 3 -->
+  <line x1="440" y1="50" x2="478" y2="50" stroke="#3A3A3A" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Passo 3: Contra-argumento Caos -->
+  <rect x="480" y="20" width="200" height="60" rx="8" fill="#FAF0E0" stroke="#7A3800" stroke-width="2"/>
+  <text x="580" y="40" text-anchor="middle" font-size="11" font-weight="bold" fill="#4A2000" font-family="Georgia,serif">3. CAOS contra-argumenta</text>
+  <text x="580" y="56" text-anchor="middle" font-size="20" font-weight="bold" fill="#7A3800" font-family="Georgia,serif">⏱ 1 min</text>
+
+  <!-- Seta 3 ↓ para juízes -->
+  <line x1="580" y1="80" x2="580" y2="118" stroke="#3A3A3A" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Passo 4: Juízes pontuam -->
+  <rect x="460" y="120" width="220" height="60" rx="8" fill="#f5f2ec" stroke="#8A8070" stroke-width="2"/>
+  <text x="570" y="144" text-anchor="middle" font-size="11" font-weight="bold" fill="#2a1f0e" font-family="Georgia,serif">4. JU&Iacute;ZES pontuam</text>
+  <text x="570" y="162" text-anchor="middle" font-size="20" font-weight="bold" fill="#5A5A5A" font-family="Georgia,serif">⏱ 30 seg</text>
+
+  <!-- Seta 4 ← para trilha -->
+  <line x1="460" y1="150" x2="422" y2="150" stroke="#3A3A3A" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Passo 5: Atualiza trilha -->
+  <rect x="220" y="120" width="200" height="60" rx="8" fill="white" stroke="#8A8070" stroke-width="2"/>
+  <text x="320" y="144" text-anchor="middle" font-size="11" font-weight="bold" fill="#3A3A3A" font-family="Georgia,serif">5. ATUALIZA A TRILHA</text>
+  <text x="320" y="162" text-anchor="middle" font-size="9" fill="#5A5A5A" font-style="italic" font-family="Georgia,serif">move o marcador conforme o efeito</text>
+
+  <!-- Seta para baixo → Vez do Caos -->
+  <line x1="320" y1="180" x2="320" y2="218" stroke="#3A3A3A" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- LINHA PONTILHADA separando as metades -->
+  <line x1="20" y1="215" x2="680" y2="215" stroke="#c8c0b0" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="350" y="212" text-anchor="middle" font-size="9" fill="#8A8070" font-style="italic" font-family="Georgia,serif">— agora é a vez do Time do Caos —</text>
+
+  <!-- Passo 6: Caos escolhe -->
+  <rect x="480" y="220" width="200" height="60" rx="8" fill="#FAF0E0" stroke="#7A3800" stroke-width="2"/>
+  <text x="580" y="244" text-anchor="middle" font-size="12" font-weight="bold" fill="#4A2000" font-family="Georgia,serif">6. CAOS escolhe</text>
+  <text x="580" y="260" text-anchor="middle" font-size="10" fill="#7A3800" font-family="Georgia,serif">uma carta e anuncia</text>
+  <!-- Seta 6 ← para narração caos -->
+  <line x1="480" y1="250" x2="442" y2="250" stroke="#3A3A3A" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Passo 7: Narração Caos -->
+  <rect x="260" y="220" width="180" height="60" rx="8" fill="#e8e2d8" stroke="#5A5A5A" stroke-width="2"/>
+  <text x="350" y="240" text-anchor="middle" font-size="11" font-weight="bold" fill="#2a1f0e" font-family="Georgia,serif">7. NARRAÇÃO DO CAOS</text>
+  <text x="350" y="256" text-anchor="middle" font-size="20" font-weight="bold" fill="#3A3A3A" font-family="Georgia,serif">⏱ 2 min</text>
+  <!-- Seta 7 ← -->
+  <line x1="260" y1="250" x2="222" y2="250" stroke="#3A3A3A" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Passo 8: Ordem contra -->
+  <rect x="20" y="220" width="200" height="60" rx="8" fill="#DFF0D0" stroke="#2E5C14" stroke-width="2"/>
+  <text x="120" y="244" text-anchor="middle" font-size="11" font-weight="bold" fill="#1A3A08" font-family="Georgia,serif">8. ORDEM contra-argumenta</text>
+  <text x="120" y="260" text-anchor="middle" font-size="20" font-weight="bold" fill="#2E5C14" font-family="Georgia,serif">⏱ 1 min</text>
+  <!-- Seta 8 ↓ -->
+  <line x1="120" y1="280" x2="120" y2="318" stroke="#3A3A3A" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Passo 9: Juízes pontuam caos -->
+  <rect x="20" y="320" width="220" height="60" rx="8" fill="#f5f2ec" stroke="#8A8070" stroke-width="2"/>
+  <text x="130" y="344" text-anchor="middle" font-size="11" font-weight="bold" fill="#2a1f0e" font-family="Georgia,serif">9. JU&Iacute;ZES pontuam</text>
+  <text x="130" y="362" text-anchor="middle" font-size="20" font-weight="bold" fill="#5A5A5A" font-family="Georgia,serif">⏱ 30 seg</text>
+  <!-- Seta 9 → trilha -->
+  <line x1="240" y1="350" x2="278" y2="350" stroke="#3A3A3A" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Passo 10: Atualiza trilha 2 -->
+  <rect x="280" y="320" width="200" height="60" rx="8" fill="white" stroke="#8A8070" stroke-width="2"/>
+  <text x="380" y="344" text-anchor="middle" font-size="11" font-weight="bold" fill="#3A3A3A" font-family="Georgia,serif">10. ATUALIZA A TRILHA</text>
+  <text x="380" y="362" text-anchor="middle" font-size="9" fill="#5A5A5A" font-style="italic" font-family="Georgia,serif">verifica se algu&eacute;m venceu</text>
+  <!-- Seta 10 → próximo turno ou fim -->
+  <line x1="480" y1="350" x2="518" y2="350" stroke="#3A3A3A" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Passo 11: Próximo turno / Fim -->
+  <rect x="520" y="320" width="160" height="60" rx="8" fill="#e8e2d8" stroke="#5A5A5A" stroke-width="2"/>
+  <text x="600" y="344" text-anchor="middle" font-size="10" font-weight="bold" fill="#2a1f0e" font-family="Georgia,serif">Fim do turno</text>
+  <text x="600" y="360" text-anchor="middle" font-size="9" fill="#5A5A5A" font-family="Georgia,serif">Pr&oacute;ximo turno ou</text>
+  <text x="600" y="374" text-anchor="middle" font-size="9" fill="#5A5A5A" font-family="Georgia,serif">declara vencedor</text>
+
+  <!-- Legenda de tempo total -->
+  <rect x="20" y="398" width="660" height="32" rx="6" fill="#f0ede6" stroke="#c8c0b0" stroke-width="1"/>
+  <text x="350" y="418" text-anchor="middle" font-size="10" fill="#3A3A3A" font-family="Georgia,serif">Tempo total por rodada completa (Ordem + Caos): ~7 minutos · 6 rodadas = ~45 minutos</text>
+</svg>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2>5. Timing &mdash; O Cron&ocirc;metro &eacute; Obrigat&oacute;rio</h2>
+
+<div class="grade-3">
+  <div class="card" style="border-top:3px solid #2E5C14;">
+    <div class="card-titulo" style="color:#1A3A08;">Narra&ccedil;&atilde;o</div>
+    <div style="font-size:28px;font-weight:bold;font-family:'IM Fell English SC',serif;color:#2E5C14;text-align:center;margin:6px 0;">2 min</div>
+    <p style="font-size:10px;margin:0;">O porta-voz joga a carta, l&ecirc; o efeito em voz alta e argumenta usando o texto de Kafka. N&atilde;o precisa falar o tempo todo &mdash; pode pausar e pensar.</p>
+  </div>
+  <div class="card" style="border-top:3px solid #7A3800;">
+    <div class="card-titulo" style="color:#4A2000;">Contra-argumento</div>
+    <div style="font-size:28px;font-weight:bold;font-family:'IM Fell English SC',serif;color:#7A3800;text-align:center;margin:6px 0;">1 min</div>
+    <p style="font-size:10px;margin:0;">O time adversário rebate o argumento. Pode questionar a interpreta&ccedil;&atilde;o ou apresentar uma leitura diferente da mesma cena.</p>
+  </div>
+  <div class="card" style="border-top:3px solid #5A5A5A;">
+    <div class="card-titulo" style="color:#3A3A3A;">Pontua&ccedil;&atilde;o</div>
+    <div style="font-size:28px;font-weight:bold;font-family:'IM Fell English SC',serif;color:#5A5A5A;text-align:center;margin:6px 0;">30 s</div>
+    <p style="font-size:10px;margin:0;">Os ju&iacute;zes atribuem 1, 2 ou 3 pontos de Verossimilhan&ccedil;a em sil&ecirc;ncio e mostram juntos. A pontua&ccedil;&atilde;o &eacute; a m&eacute;dia arredondada.</p>
+  </div>
+</div>
+
+<div class="aviso">
+  <p style="font-size:11px;font-weight:bold;margin-bottom:4px;">&#9888; Regra do cron&ocirc;metro</p>
+  <p style="font-size:11px;margin-bottom:0;">Quando o tempo acabar, o ju&iacute;z diz &ldquo;Tempo!&rdquo; e a fala encerra imediatamente &mdash; mesmo no meio de uma frase. O time que tentar falar depois do tempo perde 1 ponto de Verossimilhan&ccedil;a naquela rodada.</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2>6. A Trilha de Estabilidade &mdash; Como Mover o Marcador</h2>
+
+<p>A Trilha vai de <strong>0</strong> (vit&oacute;ria do Caos) a <strong>15</strong> (vit&oacute;ria da Ordem). Come&ccedil;a em <strong>10</strong>.</p>
+
+<table>
+  <thead><tr style="background:#3A3A3A;"><th style="color:#f0ede0;">Pontua&ccedil;&atilde;o do Ju&iacute;z</th><th style="color:#f0ede0;">Efeito na Trilha &mdash; Ordem</th><th style="color:#f0ede0;">Efeito na Trilha &mdash; Caos</th></tr></thead>
+  <tr><td><strong>1 ponto</strong> (conex&atilde;o vaga)</td><td>Move +1 se o efeito for de +1 ou +2</td><td>Move &minus;1 se o efeito for de &minus;1 ou &minus;2</td></tr>
+  <tr><td><strong>2 pontos</strong> (conex&atilde;o clara)</td><td>Move o valor <strong>completo</strong> da carta</td><td>Move o valor <strong>completo</strong> da carta</td></tr>
+  <tr><td><strong>3 pontos</strong> (conex&atilde;o profunda)</td><td>Move o valor da carta <strong>+1 b&ocirc;nus</strong></td><td>Move o valor da carta <strong>&minus;1 b&ocirc;nus</strong></td></tr>
+</table>
+
+<div class="destaque cinza">
+  <p style="font-size:11px;font-weight:bold;margin-bottom:6px;">Exemplo pr&aacute;tico:</p>
+  <p style="font-size:11px;margin-bottom:4px;">A Ordem joga <em>O Pai Samsa</em> (+3). O ju&iacute;z d&aacute; <strong>2 pontos</strong>. O marcador avan&ccedil;a +3 (de 10 para 13).</p>
+  <p style="font-size:11px;margin-bottom:4px;">O Caos joga <em>Gregor-Inseto</em> (&minus;3). O ju&iacute;z d&aacute; <strong>3 pontos</strong>. O marcador recua &minus;4 (de 13 para 9).</p>
+  <p style="font-size:11px;margin-bottom:0;">O Caos joga <em>A Voz Perdida</em> (&minus;2) mas s&oacute; recebe <strong>1 ponto</strong>. O marcador recua apenas &minus;1 (de 9 para 8).</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2>7. Tipos de Efeito de Carta &mdash; Gloss&aacute;rio Simplificado</h2>
+
+<p>Todas as cartas t&ecirc;m um <strong>valor de Estabilidade</strong> (n&uacute;mero) e um <strong>efeito especial</strong>. Os efeitos s&atilde;o de apenas 4 tipos:</p>
+
+<!-- DIAGRAMA SVG: 4 tipos de efeito -->
+<svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin:10px 0 14px;border:1px solid #c8c0b0;border-radius:8px;background:#fdfaf4;">
+  <!-- Tipo 1: Estabilidade -->
+  <rect x="10" y="15" width="160" height="150" rx="8" fill="#f5f2ec" stroke="#8A8070" stroke-width="1.5"/>
+  <text x="90" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#3A3A3A" font-family="Georgia,serif">ESTABILIDADE</text>
+  <text x="90" y="75" text-anchor="middle" font-size="32" font-weight="bold" fill="#3A3A3A" font-family="Georgia,serif">+2 / &minus;2</text>
+  <text x="90" y="100" text-anchor="middle" font-size="9" fill="#5A5A5A" font-family="Georgia,serif">Move o marcador na</text>
+  <text x="90" y="114" text-anchor="middle" font-size="9" fill="#5A5A5A" font-family="Georgia,serif">Trilha pelo valor indicado.</text>
+  <text x="90" y="130" text-anchor="middle" font-size="9" fill="#5A5A5A" font-style="italic" font-family="Georgia,serif">Mais comum.</text>
+
+  <!-- Tipo 2: Escudo -->
+  <rect x="183" y="15" width="160" height="150" rx="8" fill="#e8f5e0" stroke="#2E5C14" stroke-width="1.5"/>
+  <text x="263" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#1A3A08" font-family="Georgia,serif">ESCUDO / BLOQUEIO</text>
+  <text x="263" y="80" text-anchor="middle" font-size="28" fill="#2E5C14" font-family="Georgia,serif">&#128737;</text>
+  <text x="263" y="104" text-anchor="middle" font-size="9" fill="#2E5C14" font-family="Georgia,serif">Cancela o efeito da</text>
+  <text x="263" y="118" text-anchor="middle" font-size="9" fill="#2E5C14" font-family="Georgia,serif">pr&oacute;xima carta adversária</text>
+  <text x="263" y="132" text-anchor="middle" font-size="9" fill="#2E5C14" font-style="italic" font-family="Georgia,serif">Efeito mec&acirc;nico vai a zero.</text>
+  <text x="263" y="148" text-anchor="middle" font-size="8" fill="#4A8C20" font-family="Georgia,serif">O debate ainda acontece.</text>
+
+  <!-- Tipo 3: Trilha -->
+  <rect x="356" y="15" width="160" height="150" rx="8" fill="#faf0e0" stroke="#7A3800" stroke-width="1.5"/>
+  <text x="436" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#4A2000" font-family="Georgia,serif">AVAN&Ccedil;O NA TRILHA</text>
+  <text x="436" y="78" text-anchor="middle" font-size="28" fill="#7A3800" font-family="Georgia,serif">&#8594;&#8594;</text>
+  <text x="436" y="102" text-anchor="middle" font-size="9" fill="#7A3800" font-family="Georgia,serif">Al&eacute;m do valor de Estabilidade,</text>
+  <text x="436" y="116" text-anchor="middle" font-size="9" fill="#7A3800" font-family="Georgia,serif">move o marcador um</text>
+  <text x="436" y="130" text-anchor="middle" font-size="9" fill="#7A3800" font-family="Georgia,serif">espa&ccedil;o extra na Trilha.</text>
+  <text x="436" y="148" text-anchor="middle" font-size="8" fill="#A85000" font-style="italic" font-family="Georgia,serif">Acumula com o valor da carta.</text>
+
+  <!-- Tipo 4: Especial -->
+  <rect x="529" y="15" width="160" height="150" rx="8" fill="#fff8e0" stroke="#8A6000" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="609" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#5A3800" font-family="Georgia,serif">CARTA ESPECIAL</text>
+  <text x="609" y="76" text-anchor="middle" font-size="28" fill="#8A6000" font-family="Georgia,serif">&#9733;</text>
+  <text x="609" y="100" text-anchor="middle" font-size="9" fill="#5A3800" font-family="Georgia,serif">Alto risco: pontua&ccedil;&atilde;o 3/3</text>
+  <text x="609" y="114" text-anchor="middle" font-size="9" fill="#5A3800" font-family="Georgia,serif">d&aacute; efeito m&aacute;ximo.</text>
+  <text x="609" y="128" text-anchor="middle" font-size="9" fill="#8A6000" font-family="Georgia,serif">Pontua&ccedil;&atilde;o 1/3: perde turno.</text>
+  <text x="609" y="148" text-anchor="middle" font-size="8" fill="#8A6000" font-style="italic" font-family="Georgia,serif">Borda pontilhada na carta.</text>
+</svg>
+
+<div class="aviso">
+  <p style="font-size:11px;font-weight:bold;margin-bottom:4px;">&#9888; Sobre os efeitos de &ldquo;bloquear&rdquo;</p>
+  <p style="font-size:11px;margin-bottom:0;">Quando uma carta diz <em>&ldquo;bloqueia a pr&oacute;xima carta adversária&rdquo;</em>, o <strong>debate ainda acontece normalmente</strong> &mdash; o que n&atilde;o acontece &eacute; o movimento do marcador. O time adversário narra, os ju&iacute;zes pontuam, mas o efeito mec&acirc;nico &eacute; cancelado. Isso &eacute; importante: o debate tem valor mesmo quando o efeito &eacute; bloqueado.</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2>8. Condi&ccedil;&otilde;es de Vit&oacute;ria</h2>
+
+<div class="grade-2">
+  <div class="destaque verde">
+    <p style="font-size:12px;font-weight:bold;color:#1A3A08;margin-bottom:6px;">Ordem vence se&hellip;</p>
+    <p style="font-size:11px;margin-bottom:4px;">&#10003; O marcador chegar a <strong>15</strong> na Trilha</p>
+    <p style="font-size:11px;margin-bottom:4px;">&#10003; Uma carta especial da Ordem for narrada com <strong>3/3</strong> pontos no momento decisivo</p>
+    <p style="font-size:11px;margin-bottom:0;">&#10003; Ap&oacute;s 6 rodadas, o marcador estiver <strong>acima de 10</strong> (posi&ccedil;&atilde;o inicial)</p>
+  </div>
+  <div class="destaque marrom">
+    <p style="font-size:12px;font-weight:bold;color:#4A2000;margin-bottom:6px;">Caos vence se&hellip;</p>
+    <p style="font-size:11px;margin-bottom:4px;">&#10003; O marcador chegar a <strong>0</strong> na Trilha</p>
+    <p style="font-size:11px;margin-bottom:4px;">&#10003; Uma carta especial do Caos for narrada com <strong>3/3</strong> pontos no momento decisivo</p>
+    <p style="font-size:11px;margin-bottom:0;">&#10003; Ap&oacute;s 6 rodadas, o marcador estiver <strong>abaixo de 10</strong> (posi&ccedil;&atilde;o inicial)</p>
+  </div>
+</div>
+
+<div class="destaque cinza">
+  <p style="font-size:11px;font-weight:bold;margin-bottom:4px;">E se o tempo acabar com empate (marcador em 10)?</p>
+  <p style="font-size:11px;margin-bottom:0;">Cada time tem 3 minutos para narrar o <strong>desfecho</strong> da novela (Ordem: o desfecho original de Kafka / Caos: um desfecho alternativo). Os ju&iacute;zes pontuam e o vencedor &eacute; quem obtiver mais pontos de Verossimilhan&ccedil;a.</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2>9. Exemplo de Turno Completo</h2>
+
+<div class="destaque cinza" style="padding:14px 18px;">
+  <p style="font-size:11px;font-weight:bold;margin-bottom:8px;">Turno 3 &mdash; Parte II da novela &middot; Marcador est&aacute; em 9</p>
+
+  <div class="passo">
+    <div><div class="numero-circulo" style="background:#DFF0D0;color:#1A3A08;">1</div></div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">Ordem joga &ldquo;Grete, a Cuidadora&rdquo; (+2)</div>
+      <div class="passo-desc">O porta-voz coloca a carta na mesa e diz: <em>&ldquo;Nós jogamos Grete, a Cuidadora. Efeito: enquanto Grete cuida de Gregor, bloqueia a pr&oacute;xima carta de Abandono do Caos.&rdquo;</em></div>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div><div class="numero-circulo" style="background:#e8e2d8;color:#3A3A3A;">2</div></div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">Narra&ccedil;&atilde;o da Ordem &mdash; 2 minutos</div>
+      <div class="passo-desc"><em>&ldquo;Grete &eacute; a &uacute;nica que ainda trata Gregor como ser humano na Parte II. Ela decide quais alimentos ele prefere, ela limpa o quarto, ela ainda usa o nome &lsquo;Gregor&rsquo;. Isso mostra que a fam&iacute;lia n&atilde;o &eacute; totalmente desumana &mdash; existe uma tentativa real de cuidado antes do colapso. Kafka coloca Grete como o &uacute;ltimo elo de humanidade entre a fam&iacute;lia e o inseto.&rdquo;</em></div>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div><div class="numero-circulo" style="background:#FAF0E0;color:#4A2000;">3</div></div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">Caos contra-argumenta &mdash; 1 minuto</div>
+      <div class="passo-desc"><em>&ldquo;Grete cuida, mas o cuidado de Grete j&aacute; &eacute; mec&acirc;nico &mdash; ela estabelece regras, decide o que Gregor pode ou n&atilde;o ter no quarto. Ela come&ccedil;a a tratar Gregor como um problema a ser gerenciado, n&atilde;o como um irm&atilde;o. O cuidado dela j&aacute; &eacute; a primeira forma de abandono disfarçado de carinho.&rdquo;</em></div>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div><div class="numero-circulo" style="background:#f5f2ec;color:#3A3A3A;">4</div></div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">Ju&iacute;zes pontuam &mdash; 30 segundos</div>
+      <div class="passo-desc">Ju&iacute;z 1: 2 pontos / Ju&iacute;z 2: 3 pontos / Ju&iacute;z 3: 2 pontos &rarr; M&eacute;dia: <strong>2 pontos</strong>. Efeito completo da carta.</div>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div><div class="numero-circulo" style="background:#e8e2d8;color:#3A3A3A;">5</div></div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">Atualiza a Trilha</div>
+      <div class="passo-desc">Valor da carta: +2. Pontua&ccedil;&atilde;o 2/3: efeito completo. <strong>Marcador avança de 9 para 11.</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2>10. Equil&iacute;brio dos Decks &mdash; Como S&atilde;o Balanceados</h2>
+
+<p>Ap&oacute;s o playtest, o deck do Caos foi reequilibrado. Veja os totais:</p>
+
+<table>
+  <thead><tr style="background:#3A3A3A;"><th style="color:#f0ede0;">Deck</th><th style="color:#f0ede0;">Total de pontos base</th><th style="color:#f0ede0;">Cartas especiais</th><th style="color:#f0ede0;">Nota</th></tr></thead>
+  <tr><td><span class="tag tag-ordem">Ordem</span></td><td>+22 (12 cartas)</td><td>2 especiais (+3 cada)</td><td>M&eacute;dia +1,8 por carta</td></tr>
+  <tr><td><span class="tag tag-caos">Caos</span></td><td>&minus;22 (12 cartas)</td><td>2 especiais (&minus;3 cada)</td><td>M&eacute;dia &minus;1,8 por carta</td></tr>
+</table>
+
+<div class="aviso">
+  <p style="font-size:11px;font-weight:bold;margin-bottom:4px;">Por que o Caos parece mais forte?</p>
+  <p style="font-size:11px;margin-bottom:0;">Os temas do Caos (abandono, transforma&ccedil;&atilde;o, desumaniza&ccedil;&atilde;o) s&atilde;o mais f&aacute;ceis de narrar com impacto porque o livro foi escrito <em>pela perspectiva de Gregor</em>. Para compensar, a Ordem tem mais cartas de bloqueio e combos. O equil&iacute;brio real se d&aacute; no debate &mdash; n&atilde;o s&oacute; nos n&uacute;meros.</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<h2>11. Perguntas Frequentes (FAQ)</h2>
+
+<table>
+  <thead><tr style="background:#3A3A3A;"><th style="color:#f0ede0;">Pergunta</th><th style="color:#f0ede0;">Resposta</th></tr></thead>
+  <tr>
+    <td><strong>Quantas cartas cada jogador segura?</strong></td>
+    <td>O time inteiro segura o deck junto. Antes de cada turno, o grupo decide coletivamente qual carta jogar. O porta-voz anuncia e narra.</td>
+  </tr>
+  <tr>
+    <td><strong>Posso jogar mais de uma carta por turno?</strong></td>
+    <td>N&atilde;o. Cada time joga exatamente <strong>1 carta por turno</strong>. Isso mant&eacute;m o ritmo e d&aacute; tempo para o debate.</td>
+  </tr>
+  <tr>
+    <td><strong>O que &eacute; &ldquo;campo de jogo&rdquo;?</strong></td>
+    <td>&Eacute; a &aacute;rea da mesa onde as cartas j&aacute; jogadas ficam expostas. Cartas com efeito permanente (como &ldquo;A Ferida da Ma&ccedil;&atilde;&rdquo;) ficam no campo at&eacute; serem canceladas.</td>
+  </tr>
+  <tr>
+    <td><strong>Como funciona &ldquo;bloqueia a pr&oacute;xima carta adversária&rdquo;?</strong></td>
+    <td>O efeito mec&acirc;nico da pr&oacute;xima carta &eacute; anulado (o marcador n&atilde;o se move), mas o debate acontece normalmente. S&oacute; o n&uacute;mero &eacute; bloqueado.</td>
+  </tr>
+  <tr>
+    <td><strong>E se um jogador n&atilde;o conhecer bem o livro?</strong></td>
+    <td>Ele pode usar os textos das cartas como base. A &ldquo;Narra&ccedil;&atilde;o sugerida&rdquo; em cada carta &eacute; exatamente para isso &mdash; &eacute; um ponto de partida, n&atilde;o um roteiro obrigat&oacute;rio.</td>
+  </tr>
+  <tr>
+    <td><strong>O porta-voz pode mudar entre turnos?</strong></td>
+    <td>Sim, &eacute; recomend&aacute;vel revezar. Todos os membros do time devem ter a oportunidade de narrar pelo menos uma vez.</td>
+  </tr>
+  <tr>
+    <td><strong>E se os ju&iacute;zes discordarem muito?</strong></td>
+    <td>Calculam a m&eacute;dia arredondada. Se dois ju&iacute;zes derem 1 e um der 3, a m&eacute;dia &eacute; 1,67 &rarr; arredonda para 2.</td>
+  </tr>
+  <tr>
+    <td><strong>Posso ter 2 ju&iacute;zes em vez de 3?</strong></td>
+    <td>Sim. Com 2 ju&iacute;zes, em caso de empate (ex: 1 e 3), o professor decide. Com 1 ju&iacute;z, a pontua&ccedil;&atilde;o &eacute; direta.</td>
+  </tr>
+</table>
+
+<div class="rodape">Ordem &amp; Caos &mdash; RPG Liter&aacute;rio &middot; A Metamorfose &middot; Franz Kafka &middot; 3.&ordm; ano do Ensino M&eacute;dio</div>
+</body>
+</html>

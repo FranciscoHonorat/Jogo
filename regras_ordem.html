@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Manual da Ordem &mdash; A Metamorfose</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f0ede6;
+    font-family: 'IM Fell English', Georgia, serif;
+    padding: 24px;
+    color: #1a1208;
+  }
+
+  h1.titulo {
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: 0.06em;
+    color: #1A3A08;
+    margin-bottom: 2px;
+    font-family: 'IM Fell English SC', serif;
+  }
+  .subtitulo {
+    text-align: center;
+    font-size: 12px;
+    color: #4a3820;
+    margin-bottom: 4px;
+    font-style: italic;
+  }
+  .objetivo-banner {
+    background: #1A3A08;
+    color: #DFF0D0;
+    text-align: center;
+    padding: 8px 20px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    margin: 14px 0 20px;
+    border-radius: 4px;
+  }
+
+  h2.secao {
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1A3A08;
+    border-left: 5px solid #2E5C14;
+    padding-left: 10px;
+    margin: 22px 0 10px;
+    font-family: 'IM Fell English SC', serif;
+  }
+
+  .grade-cartas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .ficha {
+    border: 1.5px solid #2E5C14;
+    border-radius: 8px;
+    background: #fdfaf4;
+    overflow: hidden;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .ficha.especial {
+    border-color: #5C3800;
+    border-style: dashed;
+    border-width: 2px;
+  }
+
+  .ficha-topo {
+    background: #162B08;
+    padding: 6px 10px 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .ficha.especial .ficha-topo { background: #341800; }
+
+  .ficha-nome {
+    font-size: 11px;
+    font-weight: bold;
+    color: #f0ede0;
+    font-family: 'IM Fell English SC', serif;
+    line-height: 1.2;
+  }
+  .ficha-pts {
+    font-size: 16px;
+    font-weight: bold;
+    color: #88d060;
+    font-family: 'IM Fell English SC', serif;
+    white-space: nowrap;
+    margin-left: 6px;
+  }
+  .ficha.especial .ficha-pts { color: #f0c060; }
+
+  .ficha-tipo {
+    font-size: 8.5px;
+    color: #b8a880;
+    font-style: italic;
+    letter-spacing: 0.07em;
+    padding: 2px 10px 4px;
+    background: #1e3810;
+    border-bottom: 1px solid #2E5C14;
+  }
+  .ficha.especial .ficha-tipo { background: #2a1200; border-bottom-color: #5C3800; }
+
+  .ficha-corpo {
+    padding: 7px 10px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .ficha-efeito {
+    font-size: 9.5px;
+    color: #2a1f0e;
+    line-height: 1.45;
+    font-style: italic;
+    background: #eef7e6;
+    border-radius: 4px;
+    padding: 5px 7px;
+    border-left: 3px solid #2E5C14;
+  }
+  .ficha.especial .ficha-efeito {
+    background: #f7f0e0;
+    border-left-color: #8C5000;
+  }
+  .ficha-narr-label {
+    font-size: 7.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #7a6040;
+  }
+  .ficha-narr {
+    font-size: 8.5px;
+    color: #3a2e1e;
+    line-height: 1.4;
+    font-style: italic;
+  }
+  .ficha-categoria {
+    font-size: 7.5px;
+    background: #DFF0D0;
+    color: #1A3A08;
+    padding: 2px 6px;
+    border-radius: 10px;
+    display: inline-block;
+    letter-spacing: 0.06em;
+    font-weight: bold;
+  }
+
+  .tabela-cat {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+    margin-bottom: 12px;
+  }
+  .tabela-cat th {
+    background: #1A3A08;
+    color: #DFF0D0;
+    padding: 6px 8px;
+    text-align: left;
+    font-family: 'IM Fell English SC', serif;
+    letter-spacing: 0.05em;
+  }
+  .tabela-cat td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #d4c5aa;
+    vertical-align: top;
+    line-height: 1.4;
+  }
+  .tabela-cat tr:nth-child(even) td { background: #f0f8e8; }
+  .cat-nome { font-weight: bold; color: #1A3A08; }
+  .cat-cards { color: #3a2e1e; font-style: italic; }
+
+  .combo-box {
+    border: 1.5px solid #2E5C14;
+    border-radius: 8px;
+    background: #f5faf0;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    break-inside: avoid;
+  }
+  .combo-titulo {
+    font-size: 12px;
+    font-weight: bold;
+    color: #1A3A08;
+    margin-bottom: 4px;
+    font-family: 'IM Fell English SC', serif;
+  }
+  .combo-cartas {
+    font-size: 10px;
+    color: #2E5C14;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .combo-desc {
+    font-size: 10px;
+    color: #3a2e1e;
+    line-height: 1.4;
+  }
+
+  .aviso {
+    border: 1.5px solid #8C5000;
+    border-radius: 6px;
+    background: #fdf5e0;
+    padding: 8px 12px;
+    font-size: 10px;
+    color: #4a2800;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .aviso strong { color: #6a3000; }
+
+  .duas-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .bloco {
+    border: 1px solid #b8cca8;
+    border-radius: 6px;
+    padding: 8px 12px;
+    background: #f5faf0;
+  }
+  .bloco-titulo {
+    font-size: 10px;
+    font-weight: bold;
+    color: #1A3A08;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #b8cca8;
+    padding-bottom: 3px;
+  }
+  .bloco ul { list-style: none; padding: 0; }
+  .bloco ul li {
+    font-size: 9.5px;
+    color: #2a1f0e;
+    line-height: 1.5;
+    padding-left: 10px;
+    position: relative;
+  }
+  .bloco ul li::before {
+    content: "\203A";
+    position: absolute;
+    left: 0;
+    color: #2E5C14;
+    font-weight: bold;
+  }
+
+  .tabela-cont {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5px;
+    margin-bottom: 12px;
+  }
+  .tabela-cont th {
+    background: #2E5C14;
+    color: #fff;
+    padding: 5px 8px;
+    text-align: left;
+  }
+  .tabela-cont td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #d4c5aa;
+    vertical-align: top;
+    line-height: 1.4;
+  }
+  .tabela-cont tr:nth-child(even) td { background: #f0f8e8; }
+
+  .narr-exemplo {
+    border-left: 3px solid #2E5C14;
+    background: #f0f8e8;
+    padding: 7px 12px;
+    margin-bottom: 8px;
+    border-radius: 0 5px 5px 0;
+  }
+  .narr-pts {
+    font-size: 9px;
+    font-weight: bold;
+    color: #1A3A08;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+  }
+  .narr-texto {
+    font-size: 9.5px;
+    color: #2a1f0e;
+    line-height: 1.45;
+    font-style: italic;
+  }
+
+  @media print {
+    body { background: white; padding: 12px; }
+  }
+  @page { margin: 1cm; size: A4; }
+</style>
+</head>
+<body>
+
+<h1 class="titulo">Manual da Ordem &mdash; A Fam&iacute;lia</h1>
+<p class="subtitulo">Ordem &amp; Caos &mdash; RPG Liter&aacute;rio &middot; A Metamorfose &middot; Franz Kafka</p>
+<div class="objetivo-banner">
+  OBJETIVO: Manter a Trilha de Estabilidade em 10 ou acima. Se chegar a 15, vit&oacute;ria imediata da Ordem.
+</div>
+
+<!-- CARTAS -->
+<h2 class="secao">Suas 12 Cartas</h2>
+
+<div class="grade-cartas">
+
+  <div class="ficha">
+    <div class="ficha-topo">
+      <div class="ficha-nome">O Pai Samsa</div>
+      <div class="ficha-pts">+3</div>
+    </div>
+    <div class="ficha-tipo">Personagem &middot; Ordem</div>
+    <div class="ficha-corpo">
+      <span class="ficha-categoria">Bloqueio Geral</span>
+      <div class="ficha-efeito">Bloqueia a pr&oacute;xima carta do Caos: o efeito mec&acirc;nico n&atilde;o move o marcador. O debate ocorre normalmente.</div>
+      <div class="ficha-narr-label">Narra&ccedil;&atilde;o sugerida</div>
+      <div class="ficha-narr">&ldquo;O pai ergue-se com uma autoridade que Gregor nunca conhecera. A metamorfose revelou o poder que sempre existiu ali.&rdquo;</div>
+    </div>
+  </div>
+
+  <div class="ficha">
+    <div class="ficha-topo">
+      <div class="ficha-nome">Grete, a Cuidadora</div>
+      <div class="ficha-pts">+3</div>
+    </div>
+    <div class="ficha-tipo">Personagem &middot; Ordem</div>
+    <div class="ficha-corpo">
+      <span class="ficha-categoria">Bloqueio Anti-Abandono</span>
+      <div class="ficha-efeito">Bloqueia uma carta de <strong>Abandono</strong> do Caos por uma rodada. Abandono = O Abandono de Grete, A Ferida da Ma&ccedil;&atilde;, O Quarto Esvaziado.</div>
+      <div class="ficha-narr-label">Narra&ccedil;&atilde;o sugerida</div>
+      <div class="ficha-narr">&ldquo;&Eacute; Grete quem leva a comida, quem ainda tenta manter um la&ccedil;o. Enquanto ela age, h&aacute; humanidade nessa casa.&rdquo;</div>
+    </div>
+  </div>
+
+  <div class="ficha">
+    <div class="ficha-topo">
+      <div class="ficha-nome">A M&atilde;e Samsa</div>
+      <div class="ficha-pts">+3</div>
+    </div>
+    <div class="ficha-tipo">Personagem &middot; Ordem</div>
+    <div class="ficha-corpo">
+      <span class="ficha-categoria">Bloqueio Geral</span>
+      <div class="ficha-efeito">Bloqueia a pr&oacute;xima carta do Caos: o efeito mec&acirc;nico &eacute; anulado. O debate acontece normalmente.</div>
+      <div class="ficha-narr-label">Narra&ccedil;&atilde;o sugerida</div>
+      <div class="ficha-narr">&ldquo;A m&atilde;e desmaia, chora, mas n&atilde;o abandona a casa. Ela &eacute; o colapso silencioso da fam&iacute;lia &mdash; e por isso ainda sustenta a Ordem.&rdquo;</div>
+    </div>
+  </div>
+
+  <div class="ficha">
+    <div class="ficha-topo">
+      <div class="ficha-nome">A D&iacute;vida da Fam&iacute;lia</div>
+      <div class="ficha-pts">+2</div>
+    </div>
+    <div class="ficha-tipo">Evento &middot; Ordem</div>
+    <div class="ficha-corpo">
+      <span class="ficha-categoria">Anula&ccedil;&atilde;o Anti-Empatia</span>
+      <div class="ficha-efeito">Anula uma carta de <strong>Empatia</strong> do Caos nessa rodada. Empatia = Os Restos e a Podrid&atilde;o, A M&uacute;sica de Grete, O Abandono de Grete.</div>
+      <div class="ficha-narr-label">Narra&ccedil;&atilde;o sugerida</div>
+      <div class="ficha-narr">&ldquo;Gregor sabia da d&iacute;vida. Seu corpo-inseto &eacute; o corpo do trabalhador que adoeceu de ser necess&aacute;rio &mdash; e a d&iacute;vida segue sem ele.&rdquo;</div>
+    </div>
+  </div>
+
+  <div class="ficha">
+    <div class="ficha-topo">
+      <div class="ficha-nome">O Gerente da Firma</div>
+      <div class="ficha-pts">+2</div>
+    </div>
+    <div class="ficha-tipo">Personagem &middot; Ordem</div>
+    <div class="ficha-corpo">
+      <span class="ficha-categoria">Redu&ccedil;&atilde;o de Dano</span>
+      <div class="ficha-efeito">Reduz em 1 o valor da pr&oacute;xima carta do Caos jogada nessa rodada. Ex.: &minus;3 vira &minus;2; &minus;2 vira &minus;1.</div>
+      <div class="ficha-narr-label">Narra&ccedil;&atilde;o sugerida</div>
+      <div class="ficha-narr">&ldquo;O gerente vem pessoalmente &agrave; porta. O mundo do trabalho n&atilde;o tolera aus&ecirc;ncias &mdash; e &eacute; mais real para a fam&iacute;lia do que a criatura no quarto.&rdquo;</div>
+    </div>
+  </div>
+
+  <div class="ficha">
+    <div class="ficha-topo">
+      <div class="ficha-nome">A Rotina Preservada</div>
+      <div class="ficha-pts">+2</div>
+    </div>
+    <div class="ficha-tipo">Evento &middot; Ordem</div>
+    <div class="ficha-corpo">
+      <span class="ficha-categoria">Cancela&ccedil;&atilde;o Anti-Revela&ccedil;&atilde;o</span>
+      <div class="ficha-efeito">Cancela uma carta de <strong>Revela&ccedil;&atilde;o</strong> do Caos nessa rodada. Revela&ccedil;&atilde;o = Gregor-Inseto, Escalar o Teto, A M&uacute;sica de Grete.</div>
+      <div class="ficha-narr-label">Narra&ccedil;&atilde;o sugerida</div>
+      <div class="ficha-narr">&ldquo;Jantar na hora, conversas educadas, sil&ecirc;ncio nos corredores. Enquanto a rotina existe, a metamorfose pode ser ignorada.&rdquo;</div>
+    </div>
+  </div>
+
+  <div class="ficha">
+    <div class="ficha-topo">
+      <div class="ficha-nome">As Contas em Dia</div>
+      <div class="ficha-pts">+2</div>
+    </div>
+    <div class="ficha-tipo">Evento &middot; Ordem</div>
+    <div class="ficha-corpo">
+      <span class="ficha-categoria">Avan&ccedil;o na Trilha</span>
+      <div class="ficha-efeito">Al&eacute;m dos +2 pontos normais, avan&ccedil;a 1 passo adicional na Trilha da Ordem. Duplo impacto positivo.</div>
+      <div class="ficha-narr-label">Narra&ccedil;&atilde;o sugerida</div>
+      <div class="ficha-narr">&ldquo;A fam&iacute;lia descobre que a d&iacute;vida j&aacute; est&aacute; quase paga. O fardo que Gregor carregava j&aacute; estava quase resolvido sem ele.&rdquo;</div>
+    </div>
+  </div>
+
+  <div class="ficha">
+    <div class="ficha-topo">
+      <div class="ficha-nome">A Esperan&ccedil;a de Cura</div>
+      <div class="ficha-pts">+2</div>
+    </div>
+    <div class="ficha-tipo">Evento &middot; Ordem</div>
+    <div class="ficha-corpo">
+      <span class="ficha-categoria">Bloqueio Anti-Abandono</span>
+      <div class="ficha-efeito">Bloqueia a pr&oacute;xima carta de <strong>Abandono</strong> do Caos. Abandono = O Abandono de Grete, A Ferida da Ma&ccedil;&atilde;, O Quarto Esvaziado.</div>
+      <div class="ficha-narr-label">Narra&ccedil;&atilde;o sugerida</div>
+      <div class="ficha-narr">&ldquo;Enquanto h&aacute; esperan&ccedil;a de cura, h&aacute; raz&atilde;o para manter Gregor vivo. A fam&iacute;lia se agarra a isso para n&atilde;o enfrentar a verdade.&rdquo;</div>
+    </div>
+  </div>
+
+  <div class="ficha">
+    <div class="ficha-topo">
+      <div class="ficha-nome">O Uniforme do Pai</div>
+      <div class="ficha-pts">+2 / +3</div>
+    </div>
+    <div class="ficha-tipo">Item &middot; Ordem</div>
+    <div class="ficha-corpo">
+      <span class="ficha-categoria">B&ocirc;nus de Combo</span>
+      <div class="ficha-efeito">Vale +2. Se <strong>O Pai Samsa j&aacute; estiver em campo</strong>, vale +3. Jogue sempre O Pai Samsa antes para maximizar.</div>
+      <div class="ficha-narr-label">Narra&ccedil;&atilde;o sugerida</div>
+      <div class="ficha-narr">&ldquo;O pai veste o uniforme e redescobre o poder. A metamorfose de Gregor inverteu a hierarquia da casa.&rdquo;</div>
+    </div>
+  </div>
+
+  <div class="ficha">
+    <div class="ficha-topo">
+      <div class="ficha-nome">O Quarto Fechado</div>
+      <div class="ficha-pts">+1</div>
+    </div>
+    <div class="ficha-tipo">Cen&aacute;rio &middot; Ordem</div>
+    <div class="ficha-corpo">
+      <span class="ficha-categoria">Redu&ccedil;&atilde;o Anti-Revela&ccedil;&atilde;o</span>
+      <div class="ficha-efeito">Reduz em 1 o impacto de cartas de <strong>Revela&ccedil;&atilde;o</strong> do Caos. Revela&ccedil;&atilde;o = Gregor-Inseto, Escalar o Teto, A M&uacute;sica de Grete.</div>
+      <div class="ficha-narr-label">Narra&ccedil;&atilde;o sugerida</div>
+      <div class="ficha-narr">&ldquo;A porta fechada &eacute; o acordo t&aacute;cito: enquanto ningu&eacute;m v&ecirc;, ningu&eacute;m precisa decidir. A normalidade sobrevive no corredor.&rdquo;</div>
+    </div>
+  </div>
+
+  <div class="ficha">
+    <div class="ficha-topo">
+      <div class="ficha-nome">Os Pensionistas Chegam</div>
+      <div class="ficha-pts">+1</div>
+    </div>
+    <div class="ficha-tipo">Evento &middot; Ordem</div>
+    <div class="ficha-corpo">
+      <span class="ficha-categoria">Avan&ccedil;o na Trilha</span>
+      <div class="ficha-efeito">Al&eacute;m dos +1 ponto, avan&ccedil;a 1 passo adicional na Trilha da Ordem. Use quando a Trilha estiver pr&oacute;xima de 14&ndash;15.</div>
+      <div class="ficha-narr-label">Narra&ccedil;&atilde;o sugerida</div>
+      <div class="ficha-narr">&ldquo;A fam&iacute;lia adapta a casa para os pensionistas. A vida segue &mdash; n&atilde;o porque Gregor melhorou, mas porque o mundo n&atilde;o espera por ele.&rdquo;</div>
+    </div>
+  </div>
+
+  <div class="ficha especial">
+    <div class="ficha-topo">
+      <div class="ficha-nome">&#9733; O Passeio de Primavera</div>
+      <div class="ficha-pts">+3</div>
+    </div>
+    <div class="ficha-tipo">Evento Especial &middot; Ordem</div>
+    <div class="ficha-corpo">
+      <span class="ficha-categoria" style="background:#f0e0b0;color:#5C3800;">ALTO RISCO</span>
+      <div class="ficha-efeito"><strong>Narra&ccedil;&atilde;o 3/3 &rarr; vit&oacute;ria imediata da Ordem.</strong><br>Narra&ccedil;&atilde;o 1/3 &rarr; perde o turno. S&oacute; jogue com a Trilha em 12 ou acima.</div>
+      <div class="ficha-narr-label">Narra&ccedil;&atilde;o sugerida</div>
+      <div class="ficha-narr">&ldquo;A fam&iacute;lia vai ao campo como se Gregor nunca tivesse existido. Kafka n&atilde;o chama isso de al&iacute;vio &mdash; &eacute; a maior condena&ccedil;&atilde;o da obra.&rdquo;</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CATEGORIAS -->
+<h2 class="secao">Tabela de Categorias &mdash; Quais Cartas Voc&ecirc; Neutraliza</h2>
+
+<table class="tabela-cat">
+  <thead>
+    <tr>
+      <th>Categoria</th>
+      <th>Cartas do Caos que pertencem a ela</th>
+      <th>Sua carta que neutraliza</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="cat-nome">Abandono</span><br><span style="font-size:8px;font-style:italic;">Representam afastamento e isolamento de Gregor</span></td>
+      <td class="cat-cards">O Abandono de Grete &middot; A Ferida da Ma&ccedil;&atilde; &middot; O Quarto Esvaziado</td>
+      <td>Grete, a Cuidadora &bull; A Esperan&ccedil;a de Cura</td>
+    </tr>
+    <tr>
+      <td><span class="cat-nome">Revela&ccedil;&atilde;o</span><br><span style="font-size:8px;font-style:italic;">Expõem a natureza de inseto de Gregor</span></td>
+      <td class="cat-cards">Gregor-Inseto &middot; Escalar o Teto &middot; A M&uacute;sica de Grete</td>
+      <td>A Rotina Preservada &bull; O Quarto Fechado</td>
+    </tr>
+    <tr>
+      <td><span class="cat-nome">Empatia</span><br><span style="font-size:8px;font-style:italic;">Geram simpatia por Gregor, expondo a fam&iacute;lia</span></td>
+      <td class="cat-cards">Os Restos e a Podrid&atilde;o &middot; A M&uacute;sica de Grete &middot; O Abandono de Grete</td>
+      <td>A D&iacute;vida da Fam&iacute;lia</td>
+    </tr>
+    <tr>
+      <td><span class="cat-nome">Isolamento</span><br><span style="font-size:8px;font-style:italic;">Isolam Gregor f&iacute;sica ou socialmente</span></td>
+      <td class="cat-cards">O Quarto Escuro &middot; O Quarto Esvaziado &middot; A Voz Perdida</td>
+      <td><em>Use bloqueios gerais: O Pai Samsa ou A M&atilde;e Samsa</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="aviso">
+  <strong>&#9888; Regra importante:</strong> O bloqueio s&oacute; funciona se o Caos jogar a categoria correta nessa rodada. Se o Caos jogar outro tipo, o bloqueio &eacute; desperdi&ccedil;ado &mdash; mas os seus pontos ainda contam normalmente.
+</div>
+
+<!-- COMBOS -->
+<h2 class="secao">Combos Recomendados</h2>
+
+<div class="combo-box">
+  <div class="combo-titulo">1. Autoridade Plena (+9 pontos em 3 rodadas)</div>
+  <div class="combo-cartas">Rodada 1: O Pai Samsa (+3 &amp; bloqueia) &rarr; Rodada 2: O Uniforme do Pai (+3 com b&ocirc;nus) &rarr; Rodada 3: A M&atilde;e Samsa (+3 &amp; bloqueia)</div>
+  <div class="combo-desc">O Pai Samsa ativa o b&ocirc;nus do Uniforme E bloqueia a resposta do Caos. A M&atilde;e Samsa fecha a sequ&ecirc;ncia com outro bloqueio. Tr&ecirc;s rodadas, 9 pontos, dois bloqueios embutidos.</div>
+</div>
+
+<div class="combo-box">
+  <div class="combo-titulo">2. Escudo Duplo Anti-Abandono (blinda 2 rodadas consecutivas)</div>
+  <div class="combo-cartas">Rodada 1: Grete, a Cuidadora (+3) &rarr; Rodada 2: A Esperan&ccedil;a de Cura (+2)</div>
+  <div class="combo-desc">Ambas bloqueiam cartas de Abandono. Use em sequ&ecirc;ncia quando o Caos tiver A Ferida da Ma&ccedil;&atilde; ou O Abandono de Grete na m&atilde;o. Dois turnos completamente blindados, +5 pontos acumulados.</div>
+</div>
+
+<div class="combo-box">
+  <div class="combo-titulo">3. Virada Econ&ocirc;mica (+3 pontos +2 passos na Trilha)</div>
+  <div class="combo-cartas">Rodada 1: Os Pensionistas Chegam (+1 +1 trilha) &rarr; Rodada 2: As Contas em Dia (+2 +1 trilha)</div>
+  <div class="combo-desc">Cada carta gera um passo extra na Trilha. Total: +3 pontos E +2 passos adicionais na Trilha. Use quando a Trilha estiver entre 12&ndash;13 para for&ccedil;ar a vit&oacute;ria antes do Caos usar as especiais.</div>
+</div>
+
+<div class="combo-box">
+  <div class="combo-titulo">4. Muro Anti-Revela&ccedil;&atilde;o (blinda e reduz Gregor-Inseto)</div>
+  <div class="combo-cartas">Rodada 1: O Quarto Fechado (+1, reduz revela&ccedil;&atilde;o) &rarr; Rodada 2: A Rotina Preservada (+2, cancela revela&ccedil;&atilde;o)</div>
+  <div class="combo-desc">Se o Caos planeja jogar Gregor-Inseto, jogue O Quarto Fechado primeiro (reduz 1 ponto do impacto) e na rodada seguinte A Rotina Preservada cancela outra carta de Revela&ccedil;&atilde;o. Neutraliza a fase de abertura do Caos.</div>
+</div>
+
+<!-- COMO CONTRA O CAOS -->
+<h2 class="secao">Como Neutralizar as Cartas do Caos</h2>
+
+<table class="tabela-cont">
+  <thead>
+    <tr>
+      <th>Carta do Caos</th>
+      <th>Amea&ccedil;a</th>
+      <th>Melhor resposta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Gregor-Inseto</strong> (&minus;3)</td>
+      <td>Se O Quarto Escuro j&aacute; estiver no campo, <strong>dobra para &minus;6</strong>!</td>
+      <td>Use O Pai Samsa ou A M&atilde;e Samsa <em>antes</em> de Gregor-Inseto. Se O Quarto Escuro j&aacute; foi jogado, essa &eacute; sua prioridade m&aacute;xima.</td>
+    </tr>
+    <tr>
+      <td><strong>A Ferida da Ma&ccedil;&atilde;</strong> (&minus;1/rodada)</td>
+      <td>Efeito permanente: &minus;1 autom&aacute;tico por at&eacute; 3 rodadas seguidas.</td>
+      <td>Grete ou A Esperan&ccedil;a de Cura bloqueiam (categoria Abandono). Se j&aacute; est&aacute; ativa, use cartas de alto valor (+3) para compensar.</td>
+    </tr>
+    <tr>
+      <td><strong>Escalar o Teto / O Quarto Esvaziado</strong> (&minus;2)</td>
+      <td>Cancelam o efeito de uma carta Ordem j&aacute; ativa no campo.</td>
+      <td>N&atilde;o acumule muitas cartas em campo simultaneamente. Use bloqueios preventivos com O Pai Samsa ou A M&atilde;e Samsa.</td>
+    </tr>
+    <tr>
+      <td><strong>A Voz Perdida</strong> (&minus;2)</td>
+      <td>Reduz em 1 o valor da pr&oacute;xima carta da Ordem jogada.</td>
+      <td>Responda com O Gerente da Firma no turno seguinte (reduz &minus;1 do Caos). Ou jogue uma carta de baixo valor ap&oacute;s A Voz Perdida para minimizar a perda.</td>
+    </tr>
+    <tr>
+      <td><strong>"Precisamos nos Livrar Disso"</strong> (&minus;3 especial)</td>
+      <td>Narra&ccedil;&atilde;o 3/3: avan&ccedil;a 2 passos na Trilha do Caos.</td>
+      <td>Use A D&iacute;vida da Fam&iacute;lia (anula Empatia) para reduzir a pontua&ccedil;&atilde;o do juiz. Recupere com O Pai Samsa ou A M&atilde;e Samsa na pr&oacute;xima rodada.</td>
+    </tr>
+    <tr>
+      <td><strong>A Decis&atilde;o Final de Gregor</strong> (&minus;3 especial)</td>
+      <td>Narra&ccedil;&atilde;o 3/3: avan&ccedil;a 2 passos + remove carta Ordem permanentemente.</td>
+      <td>Se perceber que o Caos vai jogar essa carta, use O Pai Samsa ou A M&atilde;e Samsa para bloquear o efeito mec&acirc;nico. Voc&ecirc; perde os pontos mas preserva suas cartas em campo.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ESTRATÉGIA POR FASE -->
+<h2 class="secao">Estrat&eacute;gia por Fase</h2>
+
+<div class="duas-col">
+  <div class="bloco">
+    <div class="bloco-titulo">In&iacute;cio &mdash; Trilha em 10</div>
+    <ul>
+      <li>Guarde O Pai Samsa para bloquear Gregor-Inseto.</li>
+      <li>Jogue O Quarto Fechado cedo para reduzir cartas de Revela&ccedil;&atilde;o.</li>
+      <li>N&atilde;o gaste os +3 logo &mdash; espere o Caos revelar a ordem deles.</li>
+    </ul>
+  </div>
+  <div class="bloco">
+    <div class="bloco-titulo">Meio &mdash; Trilha entre 8 e 12</div>
+    <ul>
+      <li>Se A Ferida da Ma&ccedil;&atilde; entrar, bloqueie imediatamente com Grete ou Esperan&ccedil;a de Cura.</li>
+      <li>Use As Contas em Dia + Os Pensionistas para avan&ccedil;ar a Trilha.</li>
+      <li>O Gerente da Firma reduz qualquer carta &mdash; use contra a maior amea&ccedil;a.</li>
+    </ul>
+  </div>
+  <div class="bloco">
+    <div class="bloco-titulo">Final &mdash; Trilha em 12 ou acima</div>
+    <ul>
+      <li>Use O Passeio de Primavera s&oacute; aqui. Prepare a narra&ccedil;&atilde;o antes de jogar.</li>
+      <li>Reserve A M&atilde;e Samsa para bloquear a &uacute;ltima ofensiva do Caos.</li>
+      <li>Combo Pensionistas + Contas em Dia for&ccedil;a os passos finais da Trilha.</li>
+    </ul>
+  </div>
+  <div class="bloco">
+    <div class="bloco-titulo">Emerg&ecirc;ncia &mdash; Trilha abaixo de 7</div>
+    <ul>
+      <li>Jogue O Pai Samsa + O Uniforme do Pai em sequ&ecirc;ncia (&rarr; +6 pontos).</li>
+      <li>Use A M&atilde;e Samsa para bloquear enquanto recupera.</li>
+      <li>N&atilde;o jogue O Passeio de Primavera &mdash; risco muito alto aqui.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- NARRAÇÃO -->
+<h2 class="secao">Exemplos de Narra&ccedil;&atilde;o</h2>
+
+<div class="narr-exemplo">
+  <div class="narr-pts">3 pontos &mdash; Argumento liter&aacute;rio profundo</div>
+  <div class="narr-texto">(Jogando O Pai Samsa) &ldquo;O pai de Gregor estava desumanizado pela pobreza antes mesmo de Gregor se transformar. Kafka mostra que quando o provedor cai, o dependente encontra uma autoridade que ele mesmo n&atilde;o sabia que tinha. O uniforme n&atilde;o &eacute; mera roupa &mdash; &eacute; a prova de que a fam&iacute;lia s&oacute; precisava de uma desculpa para existir sem Gregor.&rdquo;</div>
+</div>
+
+<div class="narr-exemplo">
+  <div class="narr-pts">2 pontos &mdash; Bom, usa o livro mas superficialmente</div>
+  <div class="narr-texto">(Jogando Grete, a Cuidadora) &ldquo;Grete &eacute; a &uacute;nica que ainda cuida de Gregor. Ela leva comida e tenta entender o que ele gosta de comer. Enquanto ela faz isso, a fam&iacute;lia ainda n&atilde;o abandonou completamente Gregor.&rdquo;</div>
+</div>
+
+<div class="narr-exemplo">
+  <div class="narr-pts">1 ponto &mdash; Fraco, sem liga&ccedil;&atilde;o com o texto</div>
+  <div class="narr-texto">(Jogando A D&iacute;vida da Fam&iacute;lia) &ldquo;A fam&iacute;lia tinha d&iacute;vida ent&atilde;o precisavam de Gregor para pagar. Por isso a Ordem &eacute; importante.&rdquo;</div>
+</div>
+
+<!-- ERROS COMUNS -->
+<h2 class="secao">Erros Comuns a Evitar</h2>
+
+<div class="aviso">
+  <strong>Erro 1 &mdash; N&atilde;o bloquear Gregor-Inseto com O Quarto Escuro ativo:</strong> Se o Caos jogar O Quarto Escuro e depois Gregor-Inseto, o impacto &eacute; &minus;6. Sua prioridade &eacute; bloquear Gregor-Inseto <em>antes</em> ou assim que O Quarto Escuro entrar em campo.
+</div>
+<div class="aviso">
+  <strong>Erro 2 &mdash; Gastar bloqueios gerais em cartas fracas:</strong> O Pai Samsa e A M&atilde;e Samsa s&atilde;o bloqueios gerais preciosos. N&atilde;o os use em cartas de &minus;1. Guarde para Gregor-Inseto ou A Decis&atilde;o Final.
+</div>
+<div class="aviso">
+  <strong>Erro 3 &mdash; Jogar O Passeio de Primavera sem preparo:</strong> Narra&ccedil;&atilde;o 1/3 = turno perdido inteiro. S&oacute; use com a Trilha em 12+ e o narrador seguro da argumenta&ccedil;&atilde;o.
+</div>
+
+<p style="text-align:center;font-size:9px;color:#7a6040;margin-top:20px;font-style:italic;">
+  Manual da Ordem &mdash; Ordem &amp; Caos: RPG Liter&aacute;rio &middot; A Metamorfose &middot; Franz Kafka
+</p>
+
+</body>
+</html>
