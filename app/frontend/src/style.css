@@ -1,0 +1,155 @@
+:root {
+  --bg: #f5f2ec; --paper: #fdfaf4; --ink: #2a1f0e; --muted: #8A8070; --line: #d8cfbf;
+  --ordem: #2E5C14; --ordem-dark: #1A3A08; --ordem-soft: #DFF0D0;
+  --caos: #7A3800; --caos-dark: #4A2000; --caos-soft: #FAF0E0;
+  --gold: #8A6000; --danger: #a3261b;
+}
+* { box-sizing: border-box; }
+body { --decay: 0; margin: 0; background: color-mix(in srgb, var(--bg), #3b2a14 calc(var(--decay) * 38%)); transition: background 2s ease; color: var(--ink); font-family: 'IM Fell English', Georgia, serif; font-size: 18px; line-height: 1.4; }
+h1, h2, h3, .sc { font-family: 'IM Fell English SC', serif; font-weight: normal; margin: 0; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 16px; position: relative; z-index: 1; }
+
+/* metamorfose: a página se deteriora conforme o Caos passa à frente (--decay de 0 a 1) */
+body::before, body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: var(--decay); transition: opacity 2s ease; }
+body::before { /* manchas + vinheta */
+  background:
+    radial-gradient(ellipse 22% 16% at 8% 18%, rgba(74,40,10,.35), transparent 70%),
+    radial-gradient(ellipse 14% 20% at 92% 70%, rgba(74,40,10,.30), transparent 70%),
+    radial-gradient(ellipse 18% 12% at 70% 8%, rgba(60,30,5,.25), transparent 70%),
+    radial-gradient(ellipse 10% 14% at 22% 88%, rgba(60,30,5,.30), transparent 70%),
+    radial-gradient(ellipse 70% 70% at 50% 50%, transparent 55%, rgba(30,15,0,.55));
+}
+body::after { /* rachaduras nos cantos */
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360' fill='none' stroke='%232a1a08' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M0 40 L60 70 L95 60 L150 110 L175 105 L230 160 M95 60 L110 20 L140 0 M150 110 L140 160 L160 200 L150 240 M60 70 L40 120 L55 170'/%3E%3C/svg%3E") top left no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360' fill='none' stroke='%232a1a08' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M360 330 L300 300 L270 310 L220 260 L190 270 L140 215 M270 310 L255 350 L250 360 M220 260 L230 210 L205 170 M300 300 L320 250 L305 200'/%3E%3C/svg%3E") bottom right no-repeat;
+}
+.top, .banner, .stage, .board, .panel { transition: transform 2s ease, filter 2s ease; }
+.stage { transform: rotate(calc(var(--decay) * 0.5deg)); }
+.board { transform: rotate(calc(var(--decay) * -0.7deg)) translateX(calc(var(--decay) * 4px)); }
+.banner { transform: rotate(calc(var(--decay) * -0.4deg)); }
+.panel { transform: rotate(calc(var(--decay) * 0.3deg)); filter: sepia(calc(var(--decay) * 0.5)); }
+.card { filter: sepia(calc(var(--decay) * 0.35)) contrast(calc(1 + var(--decay) * 0.08)); }
+
+/* Gregor */
+.roach { position: fixed; left: 0; top: 0; width: 64px; height: 48px; z-index: 50; pointer-events: none; will-change: transform; filter: drop-shadow(2px 3px 2px rgba(0,0,0,.35)); }
+.roach .la { animation: legA .14s linear infinite alternate; }
+.roach .lb { animation: legA .14s linear infinite alternate-reverse; }
+.roach.fast .la, .roach.fast .lb { animation-duration: .07s; }
+@keyframes legA { from { transform: translateX(-3px); } to { transform: translateX(3px); } }
+button { font-family: 'IM Fell English SC', serif; font-size: 18px; border: 0; border-radius: 6px; padding: 12px 20px; cursor: pointer; background: var(--ink); color: #fff; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+button.ordem { background: var(--ordem); } button.caos { background: var(--caos); }
+button.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+button.big { font-size: 24px; padding: 16px 32px; }
+input { font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; width: 100%; background: #fff; }
+label { display: block; margin: 12px 0 4px; color: var(--muted); font-size: 15px; }
+
+/* entrada */
+.join { max-width: 520px; margin: 40px auto; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 28px; }
+.join h1 { font-size: 34px; text-align: center; }
+.join .sub { text-align: center; color: var(--muted); margin-bottom: 12px; font-style: italic; }
+.roles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.roles button { background: #fff; color: var(--ink); border: 2px solid var(--line); }
+.roles button.sel.ordem { background: var(--ordem); color: #fff; border-color: var(--ordem); }
+.roles button.sel.caos { background: var(--caos); color: #fff; border-color: var(--caos); }
+.roles button.sel.juiz, .roles button.sel.plateia { background: var(--ink); color: #fff; border-color: var(--ink); }
+.err { color: var(--danger); margin-top: 10px; min-height: 1.2em; }
+
+/* placar */
+.top { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; margin-bottom: 16px; }
+.team { padding: 12px 16px; border-radius: 8px; color: #fff; }
+.team.ordem { background: var(--ordem); } .team.caos { background: var(--caos); text-align: right; }
+.team .lbl { font-size: 13px; opacity: .8; letter-spacing: .05em; }
+.team .nm { font-family: 'IM Fell English SC', serif; font-size: 24px; }
+.team .pts { font-size: 40px; font-family: 'IM Fell English SC', serif; line-height: 1; }
+.team .deck { font-size: 13px; opacity: .8; }
+.team .mis { font-size: 14px; font-style: italic; opacity: .95; margin: 2px 0 6px; }
+.team.on { outline: 4px solid var(--gold); outline-offset: 2px; }
+.mid { text-align: center; min-width: 140px; }
+.mid .rd { font-size: 14px; color: var(--muted); }
+.mid .emp { font-size: 14px; color: var(--muted); }
+
+/* fase + timer */
+.stage { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 18px; text-align: center; margin-bottom: 16px; }
+.stage .ph { font-family: 'IM Fell English SC', serif; font-size: 26px; }
+.stage .hint { color: var(--muted); font-style: italic; }
+.timer { font-family: 'IM Fell English SC', serif; font-size: 72px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.timer.low { color: var(--danger); }
+.bar { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; margin: 8px auto 0; max-width: 500px; }
+.bar > i { display: block; height: 100%; background: var(--ink); transition: width .25s linear; }
+.actions { margin-top: 14px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+/* cartas */
+.board { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.slot { min-height: 280px; border: 2px dashed var(--line); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-style: italic; padding: 12px; text-align: center; }
+.card { border-radius: 12px; padding: 18px; color: var(--ink); background: #fff; border: 3px solid; position: relative; }
+.card.new { animation: flip .5s ease; }
+.card.ordem { border-color: var(--ordem); background: linear-gradient(#fff, var(--ordem-soft)); }
+.card.caos { border-color: var(--caos); background: linear-gradient(#fff, var(--caos-soft)); }
+.card.especial { border-style: dashed; }
+.card .hd { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+.card .nome { font-family: 'IM Fell English SC', serif; font-size: 26px; line-height: 1.1; }
+.card .tipo { font-size: 13px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+.card .val { font-family: 'IM Fell English SC', serif; font-size: 40px; line-height: 1; white-space: nowrap; }
+.card.ordem .val { color: var(--ordem); } .card.caos .val { color: var(--caos); }
+.card .arg { margin: 14px 0 10px; padding: 10px 12px; background: rgba(255,255,255,.8); border-radius: 6px; font-size: 19px; }
+.card .arg b { font-family: 'IM Fell English SC', serif; font-weight: normal; }
+.card.ordem .arg { border-left: 4px solid var(--ordem); } .card.caos .arg { border-left: 4px solid var(--caos); }
+.card .nar-l { font-size: 12px; letter-spacing: .1em; color: var(--muted); }
+.card .nar { font-style: italic; }
+.card .star { color: var(--gold); }
+@keyframes flip { from { transform: rotateY(90deg); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* faixa "o que eu faço agora" */
+.banner { border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; text-align: center; font-family: 'IM Fell English SC', serif; font-size: 26px; line-height: 1.2; background: #e8e2d8; color: var(--ink); }
+.banner small { display: block; font-family: 'IM Fell English', Georgia, serif; font-size: 17px; font-style: italic; margin-top: 4px; opacity: .9; }
+.banner.ordem { background: var(--ordem); color: #fff; } .banner.caos { background: var(--caos); color: #fff; }
+.banner.juiz { background: var(--gold); color: #fff; }
+.banner.pulse { animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { filter: brightness(1.15); } }
+
+/* critérios dos juízes */
+.crit { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.crit div { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 16px; }
+.crit b { font-family: 'IM Fell English SC', serif; font-weight: normal; font-size: 19px; display: block; }
+
+/* juiz / resultado */
+.votes { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.votes button.sel { outline: 4px solid var(--gold); outline-offset: 2px; }
+.result { font-family: 'IM Fell English SC', serif; font-size: 34px; }
+.result.ordem { color: var(--ordem); } .result.caos { color: var(--caos); }
+
+.panel { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; }
+.panel h3 { font-size: 20px; margin-bottom: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 16px; }
+td, th { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; }
+.w-ordem { color: var(--ordem); font-weight: bold; } .w-caos { color: var(--caos); font-weight: bold; }
+.foot { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 14px; gap: 10px; flex-wrap: wrap; }
+.toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--danger); color: #fff; padding: 10px 18px; border-radius: 6px; display: none; z-index: 10; }
+.conn { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #3a9a3a; margin-right: 6px; }
+.conn.off { background: var(--danger); }
+
+@media (max-width: 700px) {
+  .board { grid-template-columns: 1fr; }
+  .top { grid-template-columns: 1fr 1fr; }
+  .mid { grid-column: 1 / -1; order: -1; }
+  .timer { font-size: 56px; }
+  .crit { grid-template-columns: 1fr; }
+  .banner { font-size: 22px; }
+}
+
+/* convite (QR code) */
+.invite { text-align: left; }
+.invite-body { display: flex; gap: 20px; align-items: center; }
+.invite .qr { flex: 0 0 200px; width: 200px; height: 200px; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px; }
+.invite .qr svg { width: 100%; height: 100%; display: block; }
+.invite ol { margin: 0; padding-left: 22px; }
+.invite li { margin: 4px 0; }
+.invite-url { font-family: Georgia, 'Times New Roman', serif; font-variant-numeric: lining-nums; font-weight: bold; font-size: 26px; letter-spacing: .02em; margin: 8px 0 8px 22px; word-break: break-all; color: var(--ink); }
+.invite-alt { font-size: 14px; color: var(--muted); margin: 0 0 8px 22px; }
+.invite-warn { color: var(--danger); margin: 0; }
+.join-invite { max-width: 720px; margin: 0 auto 40px; }
+@media (max-width: 700px) {
+  .invite-body { flex-direction: column; }
+}

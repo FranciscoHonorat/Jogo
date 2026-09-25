@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Envia o app (Go + Vue) para uma instância EC2 (Ubuntu 24.04) e sobe com Docker Compose na porta 80.
+# Envia o app para uma instância EC2 (Ubuntu 24.04) e sobe com Docker Compose na porta 80.
 # Uso: ./deploy-ec2.sh caminho/da-chave.pem IP_PUBLICO_DA_EC2
 set -euo pipefail
 
@@ -11,8 +11,8 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 chmod 400 "$KEY"
 
 echo "==> Enviando arquivos para $HOST"
-tar -C "$DIR" --exclude=node_modules --exclude=backend/dist -czf - Dockerfile docker-compose.yml .dockerignore backend frontend \
-  | $SSH 'rm -rf ~/ordem-caos && mkdir -p ~/ordem-caos && tar -C ~/ordem-caos -xzf -'
+tar -C "$DIR" -czf - Dockerfile docker-compose.yml .dockerignore package.json server.js cards.js public \
+  | $SSH 'mkdir -p ~/ordem-caos && tar -C ~/ordem-caos -xzf -'
 
 echo "==> Instalando Docker (se necessário) e subindo o app"
 $SSH 'bash -s' <<'EOF'

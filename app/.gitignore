@@ -1,0 +1,25 @@
+# dependências e builds
+frontend/node_modules/
+backend/dist/
+release/
+frontend/dist/
+backend/ordemcaos
+*.exe
+
+# logs e temporários
+*.log
+npm-debug.log*
+.vite/
+*.tmp
+
+# segredos — nunca versionar chaves da AWS ou variáveis de ambiente
+*.pem
+*.key
+.env
+.env.*
+
+# editor / sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

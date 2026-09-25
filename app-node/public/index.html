@@ -14,9 +14,38 @@
     --gold: #8A6000; --danger: #a3261b;
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'IM Fell English', Georgia, serif; font-size: 18px; line-height: 1.4; }
+  body { --decay: 0; margin: 0; background: color-mix(in srgb, var(--bg), #3b2a14 calc(var(--decay) * 38%)); transition: background 2s ease; color: var(--ink); font-family: 'IM Fell English', Georgia, serif; font-size: 18px; line-height: 1.4; }
   h1, h2, h3, .sc { font-family: 'IM Fell English SC', serif; font-weight: normal; margin: 0; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 16px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 16px; position: relative; z-index: 1; }
+
+  /* metamorfose: a página se deteriora conforme o Caos passa à frente (--decay de 0 a 1) */
+  body::before, body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: var(--decay); transition: opacity 2s ease; }
+  body::before { /* manchas + vinheta */
+    background:
+      radial-gradient(ellipse 22% 16% at 8% 18%, rgba(74,40,10,.35), transparent 70%),
+      radial-gradient(ellipse 14% 20% at 92% 70%, rgba(74,40,10,.30), transparent 70%),
+      radial-gradient(ellipse 18% 12% at 70% 8%, rgba(60,30,5,.25), transparent 70%),
+      radial-gradient(ellipse 10% 14% at 22% 88%, rgba(60,30,5,.30), transparent 70%),
+      radial-gradient(ellipse 70% 70% at 50% 50%, transparent 55%, rgba(30,15,0,.55));
+  }
+  body::after { /* rachaduras nos cantos */
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360' fill='none' stroke='%232a1a08' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M0 40 L60 70 L95 60 L150 110 L175 105 L230 160 M95 60 L110 20 L140 0 M150 110 L140 160 L160 200 L150 240 M60 70 L40 120 L55 170'/%3E%3C/svg%3E") top left no-repeat,
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360' fill='none' stroke='%232a1a08' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M360 330 L300 300 L270 310 L220 260 L190 270 L140 215 M270 310 L255 350 L250 360 M220 260 L230 210 L205 170 M300 300 L320 250 L305 200'/%3E%3C/svg%3E") bottom right no-repeat;
+  }
+  .top, .banner, .stage, .board, .panel { transition: transform 2s ease, filter 2s ease; }
+  .stage { transform: rotate(calc(var(--decay) * 0.5deg)); }
+  .board { transform: rotate(calc(var(--decay) * -0.7deg)) translateX(calc(var(--decay) * 4px)); }
+  .banner { transform: rotate(calc(var(--decay) * -0.4deg)); }
+  .panel { transform: rotate(calc(var(--decay) * 0.3deg)); filter: sepia(calc(var(--decay) * 0.5)); }
+  .card { filter: sepia(calc(var(--decay) * 0.35)) contrast(calc(1 + var(--decay) * 0.08)); }
+
+  /* Gregor */
+  .roach { position: fixed; left: 0; top: 0; width: 64px; height: 48px; z-index: 50; pointer-events: none; will-change: transform; filter: drop-shadow(2px 3px 2px rgba(0,0,0,.35)); }
+  .roach .la { animation: legA .14s linear infinite alternate; }
+  .roach .lb { animation: legA .14s linear infinite alternate-reverse; }
+  .roach.fast .la, .roach.fast .lb { animation-duration: .07s; }
+  @keyframes legA { from { transform: translateX(-3px); } to { transform: translateX(3px); } }
   button { font-family: 'IM Fell English SC', serif; font-size: 18px; border: 0; border-radius: 6px; padding: 12px 20px; cursor: pointer; background: var(--ink); color: #fff; }
   button:disabled { opacity: .45; cursor: not-allowed; }
   button.ordem { background: var(--ordem); } button.caos { background: var(--caos); }
@@ -44,6 +73,7 @@
   .team .nm { font-family: 'IM Fell English SC', serif; font-size: 24px; }
   .team .pts { font-size: 40px; font-family: 'IM Fell English SC', serif; line-height: 1; }
   .team .deck { font-size: 13px; opacity: .8; }
+  .team .mis { font-size: 14px; font-style: italic; opacity: .95; margin: 2px 0 6px; }
   .team.on { outline: 4px solid var(--gold); outline-offset: 2px; }
   .mid { text-align: center; min-width: 140px; }
   .mid .rd { font-size: 14px; color: var(--muted); }
@@ -72,11 +102,26 @@
   .card .tipo { font-size: 13px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
   .card .val { font-family: 'IM Fell English SC', serif; font-size: 40px; line-height: 1; white-space: nowrap; }
   .card.ordem .val { color: var(--ordem); } .card.caos .val { color: var(--caos); }
-  .card .ef { margin: 14px 0 10px; padding: 10px; background: rgba(255,255,255,.7); border-radius: 6px; }
+  .card .arg { margin: 14px 0 10px; padding: 10px 12px; background: rgba(255,255,255,.8); border-radius: 6px; font-size: 19px; }
+  .card .arg b { font-family: 'IM Fell English SC', serif; font-weight: normal; }
+  .card.ordem .arg { border-left: 4px solid var(--ordem); } .card.caos .arg { border-left: 4px solid var(--caos); }
   .card .nar-l { font-size: 12px; letter-spacing: .1em; color: var(--muted); }
   .card .nar { font-style: italic; }
   .card .star { color: var(--gold); }
   @keyframes flip { from { transform: rotateY(90deg); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  /* faixa "o que eu faço agora" */
+  .banner { border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; text-align: center; font-family: 'IM Fell English SC', serif; font-size: 26px; line-height: 1.2; background: #e8e2d8; color: var(--ink); }
+  .banner small { display: block; font-family: 'IM Fell English', Georgia, serif; font-size: 17px; font-style: italic; margin-top: 4px; opacity: .9; }
+  .banner.ordem { background: var(--ordem); color: #fff; } .banner.caos { background: var(--caos); color: #fff; }
+  .banner.juiz { background: var(--gold); color: #fff; }
+  .banner.pulse { animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 50% { filter: brightness(1.15); } }
+
+  /* critérios dos juízes */
+  .crit { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .crit div { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 16px; }
+  .crit b { font-family: 'IM Fell English SC', serif; font-weight: normal; font-size: 19px; display: block; }
 
   /* juiz / resultado */
   .votes { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
@@ -99,6 +144,8 @@
     .top { grid-template-columns: 1fr 1fr; }
     .mid { grid-column: 1 / -1; order: -1; }
     .timer { font-size: 56px; }
+    .crit { grid-template-columns: 1fr; }
+    .banner { font-size: 22px; }
   }
 </style>
 </head>
@@ -151,6 +198,79 @@ function beep(freq = 660, ms = 180) {
   } catch {}
 }
 
+// ---------- Gregor (a barata) ----------
+const ROACH_SVG = `<svg viewBox="-40 -30 80 60" width="64" height="48">
+  <g stroke="#2b1606" stroke-width="2.2" stroke-linecap="round" fill="none">
+    <g class="la"><path d="M10 -6 L16 -14 L22 -22"/><path d="M0 6 L-2 15 L2 24"/><path d="M-10 -6 L-18 -14 L-28 -22"/></g>
+    <g class="lb"><path d="M10 6 L16 14 L22 22"/><path d="M0 -6 L-2 -15 L2 -24"/><path d="M-10 6 L-18 14 L-28 22"/></g>
+    <path d="M24 -2 Q34 -10 40 -26" stroke-width="1.2"/><path d="M24 2 Q34 10 40 26" stroke-width="1.2"/>
+    <path d="M-24 -3 L-34 -7" stroke-width="1.4"/><path d="M-24 3 L-34 7" stroke-width="1.4"/>
+  </g>
+  <ellipse cx="-5" cy="0" rx="20" ry="11" fill="#5a3214"/>
+  <path d="M-24 0 L12 0" stroke="#2b1606" stroke-width="1"/>
+  <ellipse cx="-5" cy="-4" rx="14" ry="3" fill="#8a5a2c" opacity=".45"/>
+  <ellipse cx="12" cy="0" rx="8" ry="9" fill="#6b3d18"/>
+  <circle cx="21" cy="0" r="4.5" fill="#3a1f0a"/>
+</svg>`;
+const roaches = new Set();
+const mouse = { x: -999, y: -999 };
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+document.addEventListener('touchstart', (e) => { const t = e.touches[0]; mouse.x = t.clientX; mouse.y = t.clientY; }, { passive: true });
+
+function spawnRoach(delay = 0) {
+  if (reduceMotion || (S && S.phase === 'speak')) return; // nunca atrapalha quem está argumentando
+  setTimeout(() => {
+    if (S && S.phase === 'speak') return;
+    const W = innerWidth, H = innerHeight;
+    const fromLeft = Math.random() < 0.5;
+    const el = document.createElement('div');
+    el.className = 'roach';
+    el.innerHTML = ROACH_SVG;
+    document.body.appendChild(el);
+    const r = { el, x: fromLeft ? -50 : W + 50, y: H * (0.2 + Math.random() * 0.6), h: fromLeft ? 0 : Math.PI, goal: fromLeft ? 0 : Math.PI, flee: 0, t: 0 };
+    roaches.add(r);
+    if (roaches.size === 1) requestAnimationFrame(stepRoaches);
+  }, delay);
+}
+
+function killRoaches() { for (const r of roaches) r.el.remove(); roaches.clear(); }
+
+let lastStep = 0;
+function stepRoaches(now) {
+  const dt = Math.min(0.05, (now - (lastStep || now)) / 1000);
+  lastStep = now;
+  const W = innerWidth, H = innerHeight;
+  for (const r of roaches) {
+    r.t += dt;
+    const dx = r.x - mouse.x, dy = r.y - mouse.y;
+    if (dx * dx + dy * dy < 150 * 150) { r.goal = Math.atan2(dy, dx); r.flee = 0.7; }
+    r.flee = Math.max(0, r.flee - dt);
+    // passos nervosos: vai virando aos poucos em direção ao objetivo, com tremidas
+    r.goal += (Math.random() - 0.5) * 0.25;
+    let diff = Math.atan2(Math.sin(r.goal - r.h), Math.cos(r.goal - r.h));
+    r.h += diff * Math.min(1, dt * (r.flee ? 14 : 4));
+    const pause = !r.flee && Math.sin(r.t * 2.3) > 0.93; // paradinhas
+    const speed = r.flee ? 560 : pause ? 0 : 190;
+    r.x += Math.cos(r.h) * speed * dt;
+    r.y += Math.sin(r.h) * speed * dt;
+    r.goal = Math.atan2(Math.sin(r.goal), Math.cos(r.goal));
+    if (r.y < 30) r.goal = Math.abs(r.goal); // não sai por cima/baixo
+    if (r.y > H - 30) r.goal = -Math.abs(r.goal);
+    r.el.classList.toggle('fast', r.flee > 0);
+    r.el.style.transform = `translate(${r.x - 32}px, ${r.y - 24}px) rotate(${r.h}rad)`;
+    if (r.t > 25 || (r.t > 1 && (r.x < -80 || r.x > W + 80))) { r.el.remove(); roaches.delete(r); }
+  }
+  if (roaches.size) requestAnimationFrame(stepRoaches);
+  else lastStep = 0;
+}
+
+// o quanto a página já "se metamorfoseou": 0 = Ordem no controle, 1 = Caos 5+ rodadas à frente
+function updateDecay() {
+  const d = S && S.phase !== 'lobby' ? Math.max(0, Math.min(1, (S.score.caos - S.score.ordem) / 5)) : 0;
+  document.body.style.setProperty('--decay', d.toFixed(2));
+}
+
 // ---------- tela de entrada ----------
 let joinRole = null;
 let draft = {};
@@ -180,6 +300,8 @@ async function renderJoin(err = '') {
     renderJoin(err);
   }));
   document.getElementById('go').onclick = doJoin;
+  document.body.style.setProperty('--decay', 0);
+  if (!renderJoin.roached) { renderJoin.roached = true; spawnRoach(1500); }
   document.getElementById('name').onkeydown = (e) => { if (e.key === 'Enter') doJoin(); };
 
   if (joinRole === 'ordem' || joinRole === 'caos') {
@@ -218,12 +340,23 @@ function connect() {
   if (es) es.close();
   es = new EventSource(`/events?room=${encodeURIComponent(session.room)}&token=${encodeURIComponent(session.token)}`);
   es.onmessage = (e) => {
+    const prev = S;
     S = JSON.parse(e.data);
     offset = S.now - Date.now();
     const key = S.phase + S.round + S.active;
-    if (lastPhaseKey && key !== lastPhaseKey) beep(S.phase === 'result' ? 880 : 660);
+    const changed = lastPhaseKey && key !== lastPhaseKey;
+    if (changed) beep(S.phase === 'result' ? 880 : 660);
     lastPhaseKey = key;
     render();
+    updateDecay();
+    if (S.phase === 'speak') killRoaches();
+    if (changed && prev) {
+      // Caos acabou de puxar uma carta
+      if (S.phase === 'think' && S.active === 'caos') spawnRoach(400);
+      // Caos venceu a rodada / a partida
+      if (S.phase === 'result' && S.lastResult.winner === 'caos') { spawnRoach(300); spawnRoach(1100); }
+      if (S.phase === 'finished' && S.score.caos > S.score.ordem) for (let i = 0; i < 6; i++) spawnRoach(i * 450);
+    }
   };
   es.onopen = () => document.querySelector('.conn')?.classList.remove('off');
   es.onerror = () => {
@@ -244,6 +377,11 @@ const PHASE = {
   finished: 'Fim de jogo',
 };
 
+const MISSION = {
+  ordem: 'Defenda que a família e a rotina resistem à metamorfose.',
+  caos: 'Mostre que a metamorfose revela e destrói a família.',
+};
+
 function teamName(t) { return S.teams[t].name || (t === 'ordem' ? 'Ordem' : 'Caos'); }
 
 const seenCards = new Set();
@@ -258,7 +396,7 @@ function cardHtml(c, team) {
       <div class="tipo">${esc(c.tipo)} · ${team === 'ordem' ? 'Ordem' : 'Caos'}</div></div>
       <div class="val">${esc(c.valor)}</div>
     </div>
-    <div class="ef">${esc(c.efeito)}</div>
+    <div class="arg"><b>Argumente que…</b> ${esc(c.argumente)}</div>
     <div class="nar-l">NARRAÇÃO SUGERIDA</div>
     <div class="nar">“${esc(c.narracao)}”</div>
   </div>`;
@@ -269,6 +407,68 @@ function slotHtml(team) {
   if (c) return cardHtml(c, team);
   const waiting = S.phase !== 'lobby' && S.phase !== 'finished';
   return `<div class="slot">${waiting ? `${esc(teamName(team))} ainda não puxou a carta` : 'Carta'}</div>`;
+}
+
+// faixa grande dizendo a cada pessoa o que fazer agora
+function bannerHtml() {
+  const me = S.me || {};
+  const role = me.role, act = S.active;
+  const isTeam = role === 'ordem' || role === 'caos';
+  const mine = role === act;
+  const other = act === 'ordem' ? 'caos' : 'ordem';
+  const actName = act ? esc(teamName(act)) : '';
+  let cls = '', text = '', sub = '';
+
+  switch (S.phase) {
+    case 'lobby':
+      if (role === 'juiz') {
+        const ready = S.teams.ordem.name && S.teams.caos.name;
+        [cls, text, sub] = ready ? ['juiz pulse', 'Tudo pronto! Clique em “Iniciar partida”.', ''] : ['', 'Aguardando os dois times entrarem…', ''];
+      } else text = 'Aguarde: um(a) juiz(a) vai iniciar a partida.';
+      if (isTeam) sub = 'Sua missão: ' + MISSION[role];
+      break;
+    case 'draw':
+      if (mine) [cls, text, sub] = [role + ' pulse', 'Sua vez! Puxe uma carta.', 'Clique no botão abaixo.'];
+      else text = `Aguarde: ${actName} vai puxar uma carta.`;
+      break;
+    case 'think':
+      if (mine) [cls, text, sub] = [role, 'Preparem o argumento!', 'Leiam a carta e combinem o que vão dizer. Quando estiverem prontos, cliquem em “Pronto”.'];
+      else if (role === 'juiz') [text, sub] = [`${actName} está se preparando.`, 'Você vota no fim da rodada, depois que os dois times falarem.'];
+      else if (isTeam) text = S.order[1] === role ? `${actName} está se preparando. Vocês falam depois.` : 'Vocês já falaram. Aguardem o outro time.';
+      else text = `${actName} está se preparando.`;
+      break;
+    case 'speak':
+      if (mine) [cls, text, sub] = [role + ' pulse', 'Falem agora!', 'Usem o livro para defender a carta de vocês.'];
+      else if (role === 'juiz') [cls, text, sub] = ['juiz', `Escute ${actName}.`, 'Você vota no fim da rodada.'];
+      else if (isTeam) [text, sub] = [`Escutem ${actName}.`, S.order[1] === role ? 'Anotem pontos para rebater quando for a vez de vocês.' : ''];
+      else text = `${actName} está argumentando.`;
+      break;
+    case 'judging':
+      if (role === 'juiz') [cls, text, sub] = S.myVote
+        ? ['', 'Voto registrado!', 'Aguardando os outros juízes. Você ainda pode trocar o voto.']
+        : ['juiz pulse', 'Vote agora: quem argumentou melhor?', 'Use os critérios abaixo.'];
+      else text = 'Os juízes estão decidindo…';
+      break;
+    case 'result': {
+      const w = S.lastResult.winner;
+      if (role === 'juiz') text = 'Clique em “Próxima rodada” quando todos estiverem prontos.';
+      else if (isTeam && w !== 'empate') [cls, text] = w === role ? [role, 'Vocês venceram a rodada!'] : ['', 'Vocês perderam esta rodada. Próxima!'];
+      else text = w === 'empate' ? 'Rodada empatada!' : `${esc(teamName(w))} venceu a rodada!`;
+      break;
+    }
+    case 'finished':
+      text = 'Fim de jogo!';
+      break;
+  }
+  return `<div class="banner ${cls}">${text}${sub ? `<small>${sub}</small>` : ''}</div>`;
+}
+
+function criteriaHtml() {
+  return `<div class="panel"><h3>Como decidir quem venceu</h3><div class="crit">
+    <div><b>1. Usa o livro</b>Cita cenas, personagens ou falas reais de A Metamorfose?</div>
+    <div><b>2. Convence</b>O argumento defende de fato o lado do time (Ordem ou Caos)?</div>
+    <div><b>3. Responde</b>Rebateu ou dialogou com o argumento do outro time?</div>
+  </div></div>`;
 }
 
 function stageHtml() {
@@ -353,6 +553,7 @@ function render() {
       <div class="team ordem ${on('ordem')}">
         <div class="lbl">ORDEM · A FAMÍLIA</div>
         <div class="nm">${esc(teamName('ordem'))}</div>
+        <div class="mis">${MISSION.ordem}</div>
         <div class="pts">${S.score.ordem}</div>
         <div class="deck">${S.deckLeft.ordem} cartas no deck</div>
       </div>
@@ -364,17 +565,21 @@ function render() {
       <div class="team caos ${on('caos')}">
         <div class="lbl">CAOS · A METAMORFOSE</div>
         <div class="nm">${esc(teamName('caos'))}</div>
+        <div class="mis">${MISSION.caos}</div>
         <div class="pts">${S.score.caos}</div>
         <div class="deck">${S.deckLeft.caos} cartas no deck</div>
       </div>
     </div>
+    ${bannerHtml()}
     ${stageHtml()}
+    ${me.role === 'juiz' && S.phase === 'judging' ? criteriaHtml() : ''}
     ${S.phase === 'lobby' ? '' : `<div class="board">
       <div>${slotHtml(S.order[0])}</div>
       <div>${slotHtml(S.order[1])}</div>
     </div>`}
     ${hist ? `<div class="panel"><h3>Histórico</h3><table>
       <tr><th>#</th><th>${esc(teamName('ordem'))}</th><th>${esc(teamName('caos'))}</th><th>Vencedor</th></tr>${hist}</table></div>` : ''}
+    ${me.role === 'juiz' && S.phase !== 'judging' ? criteriaHtml() : ''}
     <div class="foot">
       <span><span class="conn"></span>Sala <b>${esc(S.code)}</b> · você: ${esc(me.name)} (${ROLE_LABEL[me.role] || '—'})</span>
       <span>

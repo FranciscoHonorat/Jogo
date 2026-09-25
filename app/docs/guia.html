@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Guia — Como jogar Ordem &amp; Caos</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 16mm 16mm 18mm; }
+  :root { --ink: #2a1f0e; --muted: #7a7060; --line: #d8cfbf; --paper: #fdfaf4; --ordem: #2E5C14; --caos: #7A3800; --gold: #8A6000; --warn: #a3261b; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'IM Fell English', Georgia, serif; font-size: 12pt; line-height: 1.4; color: var(--ink); background: #fff; }
+  h1, h2, .sc { font-family: 'IM Fell English SC', serif; font-weight: normal; }
+  h1 { font-size: 30pt; margin: 0; text-align: center; }
+  .sub { text-align: center; color: var(--muted); font-style: italic; margin: 2px 0 18px; }
+  h2 { font-size: 18pt; margin: 16px 0 8px; padding-bottom: 4px; border-bottom: 2px solid var(--ink); break-after: avoid; }
+  h2 .n { display: inline-block; width: 30px; height: 30px; line-height: 30px; text-align: center; border-radius: 50%; background: var(--ink); color: #fff; font-size: 15pt; margin-right: 8px; }
+  p { margin: 6px 0; }
+  b { font-weight: bold; }
+  .box { border: 1px solid var(--line); background: var(--paper); border-radius: 8px; padding: 10px 14px; margin: 10px 0; break-inside: avoid; }
+  .box.warn { border-color: #e2b4a8; background: #fdf1ee; }
+  .box.tip { border-color: #c9dcb8; background: #f3f9ee; }
+  .box h3 { font-family: 'IM Fell English SC', serif; font-weight: normal; font-size: 14pt; margin: 0 0 4px; }
+  ol, ul { margin: 4px 0; padding-left: 22px; }
+  li { margin: 3px 0; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .os { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; break-inside: avoid; }
+  .os h3 { font-family: 'IM Fell English SC', serif; font-weight: normal; font-size: 15pt; margin: 0 0 4px; }
+  .os .file { font-family: Georgia, serif; font-size: 10pt; background: #efe9dd; padding: 1px 5px; border-radius: 4px; }
+  .os ol { font-size: 11pt; }
+  .term { background: #161616; color: #e8e8e8; font-family: 'Courier New', monospace; font-size: 9.5pt; line-height: 1.35; border-radius: 8px; padding: 10px 14px; white-space: pre; margin: 6px 0; break-inside: avoid; }
+  .term .hl { color: #ffd76a; font-weight: bold; }
+  figure { margin: 8px 0; break-inside: avoid; text-align: center; }
+  figure img { max-width: 100%; border: 1px solid var(--line); border-radius: 8px; }
+  figcaption { font-size: 10.5pt; color: var(--muted); font-style: italic; margin-top: 3px; }
+  .row { display: flex; gap: 14px; align-items: flex-start; break-inside: avoid; }
+  .row > * { flex: 1; }
+  .phone img { max-height: 250px; width: auto; }
+  .roles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .role { border-radius: 8px; padding: 8px 12px; color: #fff; break-inside: avoid; }
+  .role.o { background: var(--ordem); } .role.c { background: var(--caos); } .role.j { background: var(--gold); } .role.p { background: #5a5046; }
+  .role b { font-family: 'IM Fell English SC', serif; font-weight: normal; font-size: 14pt; display: block; }
+  .steps { break-inside: avoid; display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; text-align: center; margin: 8px 0; }
+  .steps div { border: 1px solid var(--line); border-radius: 8px; padding: 8px 4px; background: var(--paper); font-size: 11pt; }
+  .steps .t { font-family: 'IM Fell English SC', serif; font-size: 17pt; display: block; }
+  table { width: 100%; border-collapse: collapse; font-size: 11pt; }
+  tr { break-inside: avoid; }
+  td, th { border-bottom: 1px solid var(--line); padding: 6px 8px; vertical-align: top; text-align: left; }
+  th { font-family: 'IM Fell English SC', serif; font-weight: normal; font-size: 13pt; }
+  td:first-child { width: 36%; font-weight: bold; }
+  .page-break { break-before: page; }
+  .foot { text-align: center; color: var(--muted); font-size: 10pt; margin-top: 18px; }
+</style>
+</head>
+<body>
+
+<h1>Ordem &amp; Caos</h1>
+<div class="sub">Guia rápido para professores · A Metamorfose, de Franz Kafka</div>
+
+<div class="box tip">
+  <h3>Do que você precisa</h3>
+  <ul>
+    <li><b>Um computador</b> (Windows, Mac ou Linux) conectado a uma rede Wi-Fi. Ele será o "centro" do jogo.</li>
+    <li><b>Os celulares ou computadores dos alunos</b> conectados na <b>mesma rede Wi-Fi</b>.</li>
+    <li>Um projetor ou TV (opcional, mas ajuda muito).</li>
+  </ul>
+  <p>Não precisa instalar nada, nem criar conta, nem ter internet — só a rede Wi-Fi.</p>
+</div>
+
+<h2><span class="n">1</span>Baixar e abrir o jogo</h2>
+<p>Baixe o arquivo do seu sistema e siga os passos. <b>Os avisos de segurança são normais</b>: aparecem porque o programa é novo e gratuito, não porque tem algo errado.</p>
+
+<div class="grid">
+  <div class="os">
+    <h3>Windows</h3>
+    <span class="file">OrdemECaos-Windows.zip</span>
+    <ol>
+      <li>Botão direito no .zip → <b>Extrair tudo</b>.</li>
+      <li>Dois cliques em <b>OrdemECaos.exe</b>.</li>
+      <li>Se aparecer <i>"O Windows protegeu o computador"</i>: clique em <b>Mais informações</b> → <b>Executar assim mesmo</b>.</li>
+      <li>Se o Firewall perguntar: <b>Permitir acesso</b>.</li>
+    </ol>
+  </div>
+  <div class="os">
+    <h3>Mac</h3>
+    <span class="file">Mac-AppleSilicon.zip</span> (chip M1–M4) ou <span class="file">Mac-Intel.zip</span>
+    <ol>
+      <li>Dois cliques no .zip.</li>
+      <li>Botão direito em <b>OrdemECaos</b> → <b>Abrir</b> → <b>Abrir</b>.</li>
+      <li>Se o Mac bloquear: <b>Ajustes do Sistema → Privacidade e Segurança</b>, role até o fim → <b>Abrir Mesmo Assim</b>.</li>
+    </ol>
+    <p style="font-size:10pt;color:var(--muted)">Não sabe qual é o seu? Menu da maçã (canto superior esquerdo) → Sobre Este Mac → "Chip" (Apple) ou "Processador" (Intel).</p>
+  </div>
+  <div class="os">
+    <h3>Linux</h3>
+    <span class="file">OrdemECaos-Linux.zip</span>
+    <ol>
+      <li>Extraia o .zip.</li>
+      <li>Dois cliques em <b>OrdemECaos</b> (ou <code>./OrdemECaos</code> no terminal).</li>
+    </ol>
+  </div>
+</div>
+
+<p style="margin-top:10px">Uma <b>janela com textos</b> vai aparecer. Ela é o "motor" do jogo: <b style="color:var(--warn)">não feche essa janela durante a partida</b> — fechar encerra o jogo. Pode minimizá-la.</p>
+<div class="term">==============================================================
+   ORDEM &amp; CAOS  -  A Metamorfose
+==============================================================
+   O jogo esta rodando! O navegador vai abrir sozinho.
+   Para os alunos (conectados na MESMA rede Wi-Fi):
+       <span class="hl">http://192.168.0.104:3000</span>
+
+   <span class="hl">NAO FECHE ESTA JANELA durante o jogo.</span>
+==============================================================</div>
+
+<h2 class="page-break"><span class="n">2</span>Convidar os alunos</h2>
+<p>O navegador abre sozinho no seu computador, com um <b>QR code</b>. Projete essa tela. Se quiser separar turmas, mude o <b>código da sala</b> (ex.: TURMA3B) — o QR code se atualiza.</p>
+<div class="row">
+  <figure style="flex:1.6"><img src="img/1-computador-professor.png"><figcaption>No computador do professor: o QR code aparece embaixo.</figcaption></figure>
+  <figure class="phone" style="flex:1"><img src="img/2-celular-entrar.png"><figcaption>No celular do aluno: a sala já vem preenchida.</figcaption></figure>
+</div>
+<p>Os alunos apontam a câmera do celular para o QR code (ou digitam o endereço), escrevem o nome e escolhem um papel:</p>
+<div class="roles">
+  <div class="role o"><b>Time da Ordem</b>Defende que a família e a rotina resistem à metamorfose. O primeiro a entrar escolhe o nome do time.</div>
+  <div class="role c"><b>Time do Caos</b>Mostra que a metamorfose revela e destrói a família. O primeiro a entrar escolhe o nome do time.</div>
+  <div class="role j"><b>Juiz(a)</b>Você e/ou outros professores. Inicia a partida e vota quem argumentou melhor.</div>
+  <div class="role p"><b>Plateia</b>Só assiste. Use no computador ligado ao projetor.</div>
+</div>
+<p style="margin-top:8px">Vários alunos podem entrar no mesmo time — todos veem a mesma tela. Quando os dois times estiverem na sala, o juiz clica em <b>Iniciar partida</b>.</p>
+
+<h2 class="page-break"><span class="n">3</span>Como é uma rodada</h2>
+<div class="steps">
+  <div><span class="t">1</span>O time da vez <b>puxa uma carta</b></div>
+  <div><span class="t">30 s</span>para <b>pensar</b> no argumento</div>
+  <div><span class="t">2 min</span>para <b>argumentar</b> em voz alta</div>
+  <div><span class="t">↺</span>O outro time faz o mesmo</div>
+  <div><span class="t">3 min</span>os <b>juízes votam</b></div>
+</div>
+<div class="row">
+  <figure class="phone" style="flex:1"><img src="img/4-celular-puxar.png"><figcaption>A faixa colorida diz a cada um o que fazer.</figcaption></figure>
+  <figure class="phone" style="flex:1"><img src="img/5-celular-carta.png" style="max-height:250px;object-fit:cover;object-position:top"><figcaption>A carta traz a ideia a defender e uma narração sugerida.</figcaption></figure>
+  <figure style="flex:1.8"><img src="img/6-juiz-votar.png"><figcaption>Tela do juiz: votar e os critérios para decidir.</figcaption></figure>
+</div>
+<p>O cronômetro avança sozinho. Quem vence a rodada ganha 1 ponto; o jogo termina após 20 rodadas ou quando o juiz clicar em <b>Encerrar partida</b>. Detalhe: quanto mais o Caos ganha, mais a tela "se metamorfoseia" — e uma barata aparece de vez em quando.</p>
+
+<h2><span class="n">4</span>Se algo der errado</h2>
+<table>
+  <tr><th>Problema</th><th>O que fazer</th></tr>
+  <tr><td>O aluno escaneia o QR code, mas a página não abre</td><td>Confira se o celular está na <b>mesma rede Wi-Fi</b> do computador (não nos dados móveis 4G/5G). Algumas redes de escola bloqueiam a conexão entre aparelhos: nesse caso, <b>ligue o roteador (hotspot) do seu celular</b>, conecte o computador e os alunos nele, e feche e abra o jogo de novo.</td></tr>
+  <tr><td>No Windows, cliquei em "Cancelar" no aviso do Firewall</td><td>Iniciar → digite <b>Firewall</b> → "Permitir um aplicativo pelo Firewall" → Alterar configurações → marque <b>OrdemECaos</b> em "Privada".</td></tr>
+  <tr><td>O navegador não abriu sozinho</td><td>Abra o navegador e digite <b>http://localhost:3000</b>.</td></tr>
+  <tr><td>A janela diz que tem outro endereço (porta 3001, 3002…)</td><td>Tudo bem: outro programa estava usando a porta. Use o endereço que a janela mostra (o QR code já vem certo).</td></tr>
+  <tr><td>Fechei a janela sem querer</td><td>Abra o programa de novo. A partida recomeça do zero: os alunos precisam entrar novamente.</td></tr>
+  <tr><td>Um aluno recarregou a página ou fechou o navegador</td><td>É só abrir o mesmo endereço de novo — ele volta para o mesmo time.</td></tr>
+  <tr><td>A janela aparece e some na hora</td><td>Provavelmente o antivírus bloqueou. Libere o <b>OrdemECaos</b> no antivírus, ou extraia o .zip antes de abrir (não abra de dentro do .zip).</td></tr>
+</table>
+
+<div class="box tip" style="margin-top:14px">
+  <h3>Dica para a primeira vez</h3>
+  Antes da aula, abra o jogo e entre pelo seu próprio celular como <b>Plateia</b>. Se funcionou, a rede está pronta.
+  Depois, jogue <b>uma rodada de demonstração</b> com a turma: ver uma rodada ensina mais do que qualquer explicação.
+</div>
+
+<div class="foot">Ordem &amp; Caos — RPG Literário · A Metamorfose · Franz Kafka · 3.º ano do Ensino Médio</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+services:
+  ordem-caos:
+    build: .
+    container_name: ordem-caos
+    ports:
+      - "${PORT:-3000}:3000"
+    restart: unless-stopped

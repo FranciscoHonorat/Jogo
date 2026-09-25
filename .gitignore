@@ -1,0 +1,32 @@
+# ---------- dependências ----------
+node_modules/
+
+# ---------- builds ----------
+dist/
+release/
+app/backend/ordemcaos
+*.exe
+*.test
+*.out
+
+# ---------- segredos (NUNCA versionar) ----------
+*.pem
+*.key
+*.ppk
+.env
+.env.*
+!.env.example
+
+# ---------- logs e temporários ----------
+*.log
+npm-debug.log*
+.vite/
+*.tmp
+*.swp
+
+# ---------- editor / sistema ----------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
